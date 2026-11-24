@@ -353,3 +353,9 @@ create sequence event_like_seq;
 
 select *
 from big_area;
+
+-- 지역 47개
+insert into region values(region_seq.nextval, '오키나와', '일본');
+
+select * from region;
+

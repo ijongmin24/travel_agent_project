@@ -11,7 +11,11 @@ import java.io.IOException;
 public class MainC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        BoardDAO.load(request);
 
+        request.setAttribute("content", "jsp/board/board_main.jsp");
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
