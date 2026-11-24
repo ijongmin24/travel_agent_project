@@ -1,9 +1,99 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <!-- Info　Main CSS -->
+    <link rel="stylesheet" href="css/info/info.css">
+
+    <!-- Slick 기본 CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+
+    <!-- Slick 테마 CSS -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
 </head>
 <body>
+
+<%-- 메인 버튼 4개 --%>
+<div>
+    <h1>어떤걸 보시겠어요?</h1>
+    <div>
+        <button>지역 특산품 소개</button>
+    </div>
+    <div>
+        <button>지역별 소도시 소개</button>
+    </div>
+    <div>
+        <button>지역 맛집 소개</button>
+    </div>
+    <div>
+        <button>지역 축제 및 이벤트</button>
+    </div>
+</div>
+
+<%-- Main slider --%>
+<div class="single-item">
+    <button class="prev-btn">❮</button>
+
+    <div class="slider">
+        <div><img src="img/info/slider-event/matsuyama.jpeg"></div>
+        <div><img src="img/info/slider-event/nagasaki.jpeg"></div>
+        <div><img src="img/info/slider-event/yakusima.jpeg"></div>
+    </div>
+
+    <button class="next-btn">❯</button>
+</div>
+
+<%-- 특산품 추천 --%>
+<div class="specialty-product-recommend">
+    <h1>요즘 많이 찾는 지역 특산품은 뭘까?</h1>
+    <div class="recommend">
+        <div>
+            <img src="">
+            1
+        </div>
+        <div>
+            <img src="">
+            2
+        </div>
+        <div>
+            <img src="">
+            3
+        </div>
+    </div>
+</div>
+
+<div class="recommend-board">
+    <%-- 식당 추천 --%>
+    <div>
+        <h1>유행하는 요즘 맛집 🍚</h1>
+        <div class="single-item">
+            <button class="prev-btn">❮</button>
+
+            <div class="slider restaurant-slider">
+                <div><img src="img/info/slider-restaurant/우사기1.jpeg"></div>
+                <div><img src="img/info/slider-restaurant/우사기2.jpeg"></div>
+                <div><img src="img/info/slider-restaurant/우사기3.jpeg"></div>
+            </div>
+
+            <button class="next-btn">❯</button>
+        </div>
+    </div>
+    <%-- 게시판 --%>
+    <div>
+        <h1>현재 <span style="font-size:35px; color:red;">HOT</span>한 커뮤니케이션 💬</h1>
+        목록~~~
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- Slick JS -->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<%-- Main Slider JS --%>
+<script src="js/info/info_main.js"></script>
 
 </body>
 </html>
