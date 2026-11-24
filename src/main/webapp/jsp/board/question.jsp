@@ -17,9 +17,9 @@
 </div>
 
 <div class="main-button-warp">
-    <button onclick="location.href='jsp/board/free.jsp'">자유 게시판</button>
-    <button onclick="location.href='jsp/board/question.jsp'">질문</button>
-    <button onclick="location.href='jsp/board/share.jsp'">공유</button>
+    <button onclick="location.href='/board/free'">자유 게시판</button>
+    <button onclick="location.href='/board/question'">질문</button>
+    <button onclick="location.href='/board/share'">공유</button>
 </div>
 
 
