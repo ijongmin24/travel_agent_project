@@ -19,7 +19,7 @@
 
 <div class="main-button-warp">
     <button onclick="location.href='/schedule'">일정</button>
-    <button onclick="">관광지 소개</button>
+    <button onclick="location.href='/info'">관광지 소개</button>
     <button onclick="location.href='/board'">게시판</button>
     <button onclick="">마이페이지</button>
 </div>

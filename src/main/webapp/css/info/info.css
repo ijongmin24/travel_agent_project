@@ -1,0 +1,51 @@
+/**********
+  관광지메인
+***********/
+
+/* 광고 슬라이더 */
+.single-item {
+    width: 280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+/* 슬라이더 사진부분 넓이 */
+.slider {
+    width: 700px;
+}
+/* 슬라이더 사진 */
+.slider img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+/* 슬라이더 < > 버튼 */
+.prev-btn,
+.next-btn {
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* 특산품 추천 */
+.recommend {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* 식당추천 + 미니게시판 */
+.recommend-board {
+    display: flex;
+    justify-content: space-around;
+    align-items: unset;
+}
+
+/* 식당추천 슬라이더 조정 */
+.slider.restaurant-slider {
+    width: 100%;
+}
