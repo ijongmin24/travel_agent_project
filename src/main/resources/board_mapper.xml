@@ -8,7 +8,15 @@
         select * from region
     </select>
 
+    <select id="getCategory" resultType="com.ta.travel_agent.board.CategoryDTO">
+        select * from category
+    </select>
 
+    <insert id="addBoard" >
+        insert into board values (board_seq.nextval, #{b_title}, #{b_content}, #{b_view},
+        #{b_created_date}, #{b_updated_date}, #{b_status}, #{b_u_id},
+        #{b_region_no}, #{b_cg_no})
+    </insert>
 
 </mapper>
 

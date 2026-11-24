@@ -359,3 +359,22 @@ insert into region values(region_seq.nextval, '오키나와', '일본');
 
 select * from region;
 
+-- 주제 고르기
+insert into category values(category_seq.nextval, '정보');
+
+select * from CATEGORY;
+
+-- 유저
+insert into users values('jongmin1218', '솔데스크', 'soldesk11', 'photo',
+                         '010-9121-8750', 'ijongmin24@gmail.com');
+
+select * from USERS;
+
+-- 게시판
+insert into BOARD values(board_seq.nextval, 'title', 'content', 100000,
+                         sysdate, sysdate, 'N', 'jongmin1218',
+                         1, 1);
+
+select * from BOARD;
+
+

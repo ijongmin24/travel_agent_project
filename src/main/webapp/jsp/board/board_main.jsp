@@ -10,7 +10,7 @@
     <h1 style="text-align: center">게시판</h1>
     <div class="content">
         <div class="flex-box" style="display: flex; gap: 16px;">
-            <button>글쓰기</button>
+            <button onclick="location.href='/board/add'">글쓰기</button>
             <button>목록별로 보기</button>
             <button>사진별로 보기</button>
         <div class="drop_down">
@@ -21,7 +21,10 @@
                 </c:forEach>
             </select>
             <select name="category" id="category">
-                <option value="">주제</option>
+                <option value="" selected disabled>주제</option>
+                <c:forEach items="${categories}" var="cg">
+                    <option value="">${cg.cg_name}</option>
+                </c:forEach>
             </select>
         </div>
             <div class="search">
