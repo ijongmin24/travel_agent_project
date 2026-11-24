@@ -77,6 +77,11 @@
             <artifactId>mybatis</artifactId>
             <version>3.5.18</version>
         </dependency>
+        <dependency>
+            <groupId>com.oracle.database.jdbc</groupId>
+            <artifactId>ojdbc11</artifactId>
+            <version>23.6.0.24.10</version>
+        </dependency>
     </dependencies>
 
     <build>
