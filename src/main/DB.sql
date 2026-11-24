@@ -350,3 +350,6 @@ create table restaurant_like
 create sequence restaurant_like_seq;
 
 create sequence event_like_seq;
+
+select *
+from big_area;
