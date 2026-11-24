@@ -11,7 +11,7 @@ import java.io.IOException;
 public class MainC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        BoardDAO.load(request);
+        BoardDAO.select(request);
 
         request.setAttribute("content", "jsp/board/board_main.jsp");
 
