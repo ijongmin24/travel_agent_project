@@ -8,7 +8,7 @@
 
 <div class="header">
     <div class="main-logo">
-        <img src="img/main/main.png">
+        <img src="/img/main/main.png">
     </div>
 
     <div class="login-box">
@@ -18,12 +18,15 @@
 </div>
 
 <div class="main-button-warp">
-    <button onclick="">일정</button>
+    <button onclick="location.href='/schedule'">일정</button>
     <button onclick="">관광지 소개</button>
     <button onclick="">게시판</button>
     <button onclick="">마이페이지</button>
 </div>
 
+<div class="content">
+    <jsp:include page="${content}"></jsp:include>
+</div>
 
 
 
