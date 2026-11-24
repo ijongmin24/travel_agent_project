@@ -24,6 +24,10 @@
     <button onclick="">마이페이지</button>
 </div>
 
+<div class="search">
+    <jsp:include page="/jsp/search.jsp"></jsp:include>
+</div>
+
 <div class="content">
     <jsp:include page="${content}"></jsp:include>
 </div>
