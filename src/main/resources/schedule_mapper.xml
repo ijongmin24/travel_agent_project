@@ -10,9 +10,10 @@
     </insert>
 
     <select id="getAllPlace">
-        select spot_no, s_date,spot_name,s_p_visitorder, s_p_price
-        from schedule, schedule_place, spot
-        where s_no = s_p_s_no and s_p_spot_no = spot_no
+        select *
+        from SCHEDULE, SCHEDULE_PLACE, SPOT
+        where s_p_s_no = s_t_no AND S_P_SPOT_NO = spot_no
+        AND s_t_no = #{spot_no};
     </select>
 
     <select id="getSpotDetail" resultType="com.ta.travel_agent.schedule.SpotDTO">

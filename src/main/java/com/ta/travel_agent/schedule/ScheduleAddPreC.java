@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ScheduleAddPreC extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-
+        ScheduleDAO.getRegion(req);
 
         req.setAttribute("content", "/jsp/schedule/add/schedule_add_pre.jsp");
 

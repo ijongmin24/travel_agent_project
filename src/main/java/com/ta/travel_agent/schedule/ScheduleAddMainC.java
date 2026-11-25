@@ -11,8 +11,7 @@ import java.io.IOException;
 public class ScheduleAddMainC extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-
-        ScheduleDAO.getRegion(req);
+        ScheduleDAO.getTravel(req);
 
         req.setAttribute("content", "/jsp/schedule/add/schedule_add_main.jsp");
 

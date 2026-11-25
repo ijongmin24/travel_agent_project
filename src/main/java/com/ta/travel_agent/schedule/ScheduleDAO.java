@@ -70,4 +70,21 @@ public class ScheduleDAO {
         }
         return null;
     }
+
+    public static void getTravel(HttpServletRequest req) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+
+            List<RegionDTO> regions = ss.selectList("bo.getAllPlace");
+            req.setAttribute("regions", regions);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ss.close();
+        }
+    }
 }

@@ -1,7 +1,13 @@
 package com.ta.travel_agent.schedule;
 
 import com.google.gson.Gson;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SpotDTO {
     private int spot_no;
     private String spot_name;

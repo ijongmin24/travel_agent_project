@@ -15,6 +15,7 @@
             <option value="${r_no}">${r.r_name}</option>
         </c:forEach>
     </select>
+     <div>${regions[0].r_name}</div>
 
     <label for="startDate">시작일</label>
     <input type="date" name="startDate">

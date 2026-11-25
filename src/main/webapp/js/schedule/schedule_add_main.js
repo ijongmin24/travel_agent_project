@@ -2,11 +2,9 @@ function handleViewPlace(dom){
     console.log(dom);
 
     const no = $(dom).data("no");
-    console.log(no);
 
     $.ajax({
         url : '/schedule/detail',
-        contentType: 'application/json; charset=UTF-8',
         data : {
             spot_no : no
         }
