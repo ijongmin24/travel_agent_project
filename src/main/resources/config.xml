@@ -18,6 +18,7 @@
     </environments>
     <mappers>
         <mapper resource="board_mapper.xml"/>
+        <mapper resource="schedule_mapper.xml"/>
         <mapper resource="info_mapper.xml"/>
     </mappers>
 

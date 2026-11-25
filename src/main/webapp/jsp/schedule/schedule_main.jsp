@@ -8,7 +8,7 @@
 <body>
     <div>
         <button>내 일정 목록 조회</button>
-        <button>나만의 일정 만들기</button>
+        <button onclick="location.href='/schedule/add/pre'">나만의 일정 만들기</button>
         <button>다른 회원 일정 찾아보기</button>
         <button>일정 수정 및 삭제</button>
     </div>
@@ -18,6 +18,7 @@
         <div>your content1</div>
         <div>your content2</div>
         <div>your content3</div>
+        
     </div>
 
     <h1>다른 회원들이 많이 본 일정</h1>
@@ -36,5 +37,5 @@
     </div>
 
 </body>
-<script src="/js/schedule/schedule_main_js.js"></script>
+<script src="/js/schedule/schedule_main.js"></script>
 </html>
