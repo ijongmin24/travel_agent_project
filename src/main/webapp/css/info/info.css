@@ -45,6 +45,21 @@
     align-items: unset;
 }
 
+/* 특산품 추천 사진 */
+.recommend img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* 특산품 추천 글자 */
+.recommend span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 /* 식당추천 슬라이더 조정 */
 .slider.restaurant-slider {
     width: 100%;

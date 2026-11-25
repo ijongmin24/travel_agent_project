@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,7 +14,7 @@
           href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
 </head>
 <body>
-
+<img src="">
 <%-- 메인 버튼 4개 --%>
 <div>
     <h1>어떤걸 보시겠어요?</h1>
@@ -49,16 +50,16 @@
     <h1>요즘 많이 찾는 지역 특산품은 뭘까?</h1>
     <div class="recommend">
         <div>
-            <img src="">
-            1
+            <img src="img/info/slider-restaurant/우사기2.jpeg">
+            <span>우사기 1</span>
         </div>
         <div>
-            <img src="">
-            2
+            <img src="img/info/slider-restaurant/우사기2.jpeg">
+            <span>우사기 2</span>
         </div>
         <div>
-            <img src="">
-            3
+            <img src="img/info/slider-restaurant/우사기2.jpeg">
+            <span>우사기 3</span>
         </div>
     </div>
 </div>
@@ -82,7 +83,13 @@
     <%-- 게시판 --%>
     <div>
         <h1>현재 <span style="font-size:35px; color:red;">HOT</span>한 커뮤니케이션 💬</h1>
-        목록~~~
+        <c:forEach items="${boards}" var="b">
+            <div>
+            제목: ${b.b_title}
+            날짜: ${b.b_created_date}
+            유저: ${b.b_u_id}
+            </div>
+        </c:forEach>
     </div>
 </div>
 
