@@ -17,8 +17,4 @@ public class InfoC extends HttpServlet {
         request.getRequestDispatcher("index.jsp").forward(request,response);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    }
-
 }
