@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-<form action="/board/add" method="post" >
+<form action="/board/add" method="post">
     <div class="container">
         <div>제목
         <input type="text" name="b_title">

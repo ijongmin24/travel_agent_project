@@ -22,8 +22,10 @@ public class BoardDAO {
             ss = MyBatis.connect();
             List<RegionDTO> regions = ss.selectList("jmqqq.getRegion");
             List<CategoryDTO> categories = ss.selectList("jmqqq.getCategory");
+            List<BoardDTO> boards = ss.selectList("jmqqq.getBoard");
             request.setAttribute("regions",regions);
             request.setAttribute("categories",categories);
+            request.setAttribute("boards",boards);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -40,7 +42,6 @@ public class BoardDAO {
             // 값 받기
             String b_no = request.getParameter("b_no");
             String b_title = request.getParameter("b_title");
-            System.out.println("제목 : " + b_title);
             String b_content = request.getParameter("b_content");
             String b_view = "0";
             SimpleDateFormat b_created_date = new SimpleDateFormat("yyyy-MM-dd");

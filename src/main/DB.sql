@@ -377,8 +377,17 @@ insert into BOARD values(board_seq.nextval, 'title', 'content', 100000,
 
 select * from BOARD;
 
-select * from users;
+delete board where b_no = 22;
+
+select *
+from BOARD, Region
+where b_region_no = r_no;
+
+select *
+from board_like;
 
 
 
 
+
+select * from BOARD_SCRAP;
