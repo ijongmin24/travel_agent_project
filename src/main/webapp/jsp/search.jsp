@@ -8,7 +8,7 @@
     <div class="search-flex-wrapper" style="display: flex;">
         <div class="search-dropdown">
             <img onclick="handleSearchDropDown()" style="width: 30px; height: 30px;" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/120px-Hamburger_icon.svg.png?utm_source=ko.wikipedia.org&utm_campaign=index&utm_content=thumbnail"/>
-            <div class="search-dropdown-list" id="search-dropdown-list" style="display: none; position: absolute; background-color: white;">
+            <div class="search-dropdown-list" id="search-dropdown-list" style="display: none; position: absolute; background-color: white; z-index: 999">
                 <div>주요 소도시 정보</div>
                 <div>특산품 구매</div>
                 <div>일정 짜는 법 가이드</div>
