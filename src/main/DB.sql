@@ -377,4 +377,7 @@ insert into BOARD values(board_seq.nextval, 'title', 'content', 100000,
 
 select * from BOARD;
 
-
+-- board에 check 제약 조건 추가
+Alter table Board add constraint check_status check ( B_STATUS in ('Y', 'N') );
+-- comments에 check 제약 조건 추가
+Alter table comments add constraint check_comment_status check ( c_status in ('Y', 'N') );

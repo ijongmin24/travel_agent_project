@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bo">
+
+<!--    일정-->
+    <insert id="addTravel">
+
+    </insert>
+
+    <select id="getAllPlace">
+        select spot_no, s_date,spot_name,s_p_visitorder, s_p_price
+        from schedule, schedule_place, spot
+        where s_no = s_p_s_no and s_p_spot_no = spot_no
+    </select>
+
+    <select id="getSpotDetail" resultType="com.ta.travel_agent.schedule.SpotDTO">
+        select * from spot where spot_no = #{spot_no}
+    </select>
+
+
+
+</mapper>
+
+
