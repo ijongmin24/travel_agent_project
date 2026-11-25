@@ -4,22 +4,22 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo">
 
-<!--    일정-->
+    <!--    일정-->
     <insert id="addTravel">
 
     </insert>
 
-    <select id="getAllPlace">
+    <select id="getAllPlace" resultType="com.ta.travel_agent.schedule.ScheduleSpotDTO">
         select *
         from SCHEDULE, SCHEDULE_PLACE, SPOT
-        where s_p_s_no = s_t_no AND S_P_SPOT_NO = spot_no
-        AND s_t_no = #{spot_no};
+        where s_p_s_no = s_no
+        AND S_P_SPOT_NO = spot_no
+        AND s_t_no = #{travel_no}
     </select>
 
     <select id="getSpotDetail" resultType="com.ta.travel_agent.schedule.SpotDTO">
         select * from spot where spot_no = #{spot_no}
     </select>
-
 
 
 </mapper>
