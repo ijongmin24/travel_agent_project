@@ -2,8 +2,37 @@
   관광지메인
 ***********/
 
+/* 메인 상단 지도 + 버튼 4개 */
+.main-top {
+    display: flex;
+    margin: 0 auto;
+}
+/* 상단 지도 사진 */
+.main-top img {
+    width: 70%;
+    height: 50%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+/* 상단 버튼 4개 */
+.main-top button {
+    margin-bottom: 50px;
+    margin-left: 10px;
+    background-color: #ffffff;  /* 배경색 */
+    color: #333333;             /* 글자색 */
+    border: 1px solid #cccccc;  /* 테두리 */
+    border-radius: 8px;         /* 모서리 둥글게 */
+    font-size: 20px;            /* 글자 크기 */
+    width: 100%;                 /* 메인버튼 길이 */
+    height: 60px;               /* 메인버튼 높이 */
+}
+/* 메인 top 오른쪽 전체 */
+.main-right {
+    margin-left: 18px;
+}
 /* 광고 슬라이더 */
-.single-item {
+.single-item,
+.single-item2 {
     width: 280px;
     margin: 0 auto;
     display: flex;
@@ -24,42 +53,38 @@
 }
 /* 슬라이더 < > 버튼 */
 .prev-btn,
-.next-btn {
+.next-btn,
+.prev-btn2,
+.next-btn2 {
     background: none;
     border: none;
     font-size: 30px;
     cursor: pointer;
 }
-
 /* 특산품 추천 */
 .recommend {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-
 /* 식당추천 + 미니게시판 */
 .recommend-board {
     display: flex;
     justify-content: space-around;
     align-items: unset;
 }
-
 /* 특산품 추천 사진 */
 .recommend img {
     display: block;
     margin: 0 auto;
     width: 100%;
 }
-
 /* 특산품 추천 글자 */
 .recommend span {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-
 /* 식당추천 슬라이더 조정 */
 .slider.restaurant-slider {
     width: 100%;

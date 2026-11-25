@@ -14,10 +14,14 @@
           href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
 </head>
 <body>
-<img src="">
+
+<%-- 메인 지도 사진 --%>
+<div class="main-top">
+<img src="img/info/main_map/map.png">
+
 <%-- 메인 버튼 4개 --%>
-<div>
-    <h1>어떤걸 보시겠어요?</h1>
+<div class="main-right">
+    <span style="color: #263B50"><h1>어떤걸 보시겠어요?</h1></span>
     <div>
         <button>지역 특산품 소개</button>
     </div>
@@ -31,12 +35,13 @@
         <button>지역 축제 및 이벤트</button>
     </div>
 </div>
+</div>
 
 <%-- Main slider --%>
 <div class="single-item">
     <button class="prev-btn">❮</button>
 
-    <div class="slider">
+    <div class="slider eventslider">
         <div><img src="img/info/slider-event/matsuyama.jpeg"></div>
         <div><img src="img/info/slider-event/nagasaki.jpeg"></div>
         <div><img src="img/info/slider-event/yakusima.jpeg"></div>
@@ -68,8 +73,8 @@
     <%-- 식당 추천 --%>
     <div>
         <h1>유행하는 요즘 맛집 🍚</h1>
-        <div class="single-item">
-            <button class="prev-btn">❮</button>
+        <div class="single-item2">
+            <button class="prev-btn2">❮</button>
 
             <div class="slider restaurant-slider">
                 <div><img src="img/info/slider-restaurant/우사기1.jpeg"></div>
@@ -77,7 +82,7 @@
                 <div><img src="img/info/slider-restaurant/우사기3.jpeg"></div>
             </div>
 
-            <button class="next-btn">❯</button>
+            <button class="next-btn2">❯</button>
         </div>
     </div>
     <%-- 게시판 --%>
