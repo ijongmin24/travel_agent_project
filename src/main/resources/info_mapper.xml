@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gyu">
+    <!--  관광지 메인화면 게시판  -->
+    <select id="viewHotBoard" resultType="com.ta.travel_agent.info.BoardDTO">
+        select * from board         <!--    수정할것 : 조회수 + 좋아요가 많은 게시물    -->
+    </select>
+    <!--  관광지 특산품 페이지  -->
+    <select id="viewProducts" resultType="com.ta.travel_agent.info.InfoProductDTO">
+        select * from product       <!--    수정할것 : where 추가    -->
+    </select>
+    <!--  관광지 특산품 페이지 (대도시명 표시)  -->
+    <select id="viewBA" resultType="com.ta.travel_agent.info.InfoBADTO">
+        select * from big_area where ba_no=2    <!--    수정할것 : where 수정    -->
+    </select>
+    <!--  관광지 특산품 페이지 (소도시명 표시)  -->
+    <select id="viewSAProduct" resultType="com.ta.travel_agent.info.InfoSADTO">
+        select * from small_area where sa_no=1    <!--    수정할것 : where 수정    -->
+    </select>
+    <!--  지역별 소도시 페이지 (소도시명 표시)  -->
+    <select id="viewSA" resultType="com.ta.travel_agent.info.InfoSADTO">
+        select * from small_area where sa_ba_no=2    <!--    수정할것 : where 수정    -->
+    </select>
+    <!--  레스토랑 페이지  -->
+    <select id="viewRes" resultType="com.ta.travel_agent.info.InfoRestaurantDTO">
+        select * from restaurant where rs_sa_no=1    <!--    수정할것 : where 수정    -->
+    </select>
+</mapper>

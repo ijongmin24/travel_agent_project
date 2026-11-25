@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -14,28 +15,14 @@
 </head>
 <body>
 
-<%-- 메인 버튼 4개 --%>
-<div>
-    <h1>어떤걸 보시겠어요?</h1>
-    <div>
-        <button>지역 특산품 소개</button>
-    </div>
-    <div>
-        <button>지역별 소도시 소개</button>
-    </div>
-    <div>
-        <button>지역 맛집 소개</button>
-    </div>
-    <div>
-        <button>지역 축제 및 이벤트</button>
-    </div>
-</div>
+<%-- 메인 top 고정부분 --%>
+<jsp:include page="info_mainTOP.jsp"></jsp:include>
 
 <%-- Main slider --%>
 <div class="single-item">
     <button class="prev-btn">❮</button>
 
-    <div class="slider">
+    <div class="slider eventslider">
         <div><img src="img/info/slider-event/matsuyama.jpeg"></div>
         <div><img src="img/info/slider-event/nagasaki.jpeg"></div>
         <div><img src="img/info/slider-event/yakusima.jpeg"></div>
@@ -49,16 +36,16 @@
     <h1>요즘 많이 찾는 지역 특산품은 뭘까?</h1>
     <div class="recommend">
         <div>
-            <img src="">
-            1
+            <img src="img/info/slider-restaurant/우사기2.jpeg">
+            <span>우사기 1</span>
         </div>
         <div>
-            <img src="">
-            2
+            <img src="img/info/slider-restaurant/우사기2.jpeg">
+            <span>우사기 2</span>
         </div>
         <div>
-            <img src="">
-            3
+            <img src="img/info/slider-restaurant/우사기2.jpeg">
+            <span>우사기 3</span>
         </div>
     </div>
 </div>
@@ -67,8 +54,8 @@
     <%-- 식당 추천 --%>
     <div>
         <h1>유행하는 요즘 맛집 🍚</h1>
-        <div class="single-item">
-            <button class="prev-btn">❮</button>
+        <div class="single-item2">
+            <button class="prev-btn2">❮</button>
 
             <div class="slider restaurant-slider">
                 <div><img src="img/info/slider-restaurant/우사기1.jpeg"></div>
@@ -76,13 +63,19 @@
                 <div><img src="img/info/slider-restaurant/우사기3.jpeg"></div>
             </div>
 
-            <button class="next-btn">❯</button>
+            <button class="next-btn2">❯</button>
         </div>
     </div>
     <%-- 게시판 --%>
     <div>
         <h1>현재 <span style="font-size:35px; color:red;">HOT</span>한 커뮤니케이션 💬</h1>
-        목록~~~
+        <c:forEach items="${boards}" var="b">
+            <div>
+            제목: ${b.b_title}
+            날짜: ${b.b_created_date}
+            유저: ${b.b_u_id}
+            </div>
+        </c:forEach>
     </div>
 </div>
 
