@@ -3,3 +3,5 @@ insert into SPOT values (SPOT_SEQ.nextval, '倉敷美観地区', '岡山県倉�
 
 
 select * From SPOT;
+
+select * from TRAVEL;
