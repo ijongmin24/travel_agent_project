@@ -11,7 +11,9 @@ import java.io.IOException;
 public class InfoProductC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        InfoDAO.viewHotBoard(request);
+        InfoDAO.viewProduct(request);
+        InfoDAO.viewBA(request);
+        InfoDAO.viewSA(request);
 
         request.setAttribute("content", "jsp/info/info_product.jsp");
         request.getRequestDispatcher("index.jsp").forward(request,response);

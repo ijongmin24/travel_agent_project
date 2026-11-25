@@ -1,6 +1,6 @@
-/**********
-  관광지메인
-***********/
+/*********
+ 관광지메인
+**********/
 
 /* 메인 상단 지도 + 버튼 4개 */
 .main-top {
@@ -88,4 +88,72 @@
 /* 식당추천 슬라이더 조정 */
 .slider.restaurant-slider {
     width: 100%;
+}
+
+/***********
+ 특산품 페이지
+************/
+
+/* 대도시명 */
+.ba_name {
+    background-color: #bb76e3;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    border: 0 solid #0c3cdd;
+    border-radius: 10px;
+    width: 50%;
+    height: 50px;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 50px;
+    margin-top: 10px;
+    margin: 10px auto 50px;
+}
+/* 소도시명 */
+.sa_name {
+    display: block;
+    font-size: 28px;
+    border: 1px solid #0c3cdd;
+    border-radius: 10px;
+    width: 150px;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+/* 특산품 전체 영역 */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+}
+/* 제품 하나의 영역 */
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+/* 특산품 사진 박스 */
+.product-info-img {
+    border: 1px solid #0cdd2f;
+    width: 100%;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+/* 특산품 상세정보 박스 */
+.product-Details {
+    border: 1px solid #ff0101;
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    box-sizing: border-box;
 }
