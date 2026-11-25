@@ -93,5 +93,39 @@ public class BoardDAO {
             ss.close();
         }
     }
+
+    public static void addComment(HttpServletRequest request) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+            String c_content = request.getParameter("c_content");
+            SimpleDateFormat c_created_date = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat c_updated_date = new SimpleDateFormat("yyyy-MM-dd");
+            String c_status = "N";
+            String c_b_no = request.getParameter("c_b_no");
+            String c_parent_comment = "null";
+            String c_u_id = request.getParameter("c_u_id");
+
+            Map<String, String> params = new HashMap<>();
+            params.put("c_content", c_content);
+            params.put("c_created_date", c_created_date.format(new Date()));
+            params.put("c_updated_date", c_updated_date.format(new Date()));
+            params.put("c_status", c_status);
+            params.put("c_b_no", c_b_no);
+            params.put("c_parent_comment", c_parent_comment);
+            params.put("c_u_id", c_u_id);
+
+            if (ss.insert("jmqqq.addComment", params) == 1) {
+                System.out.println("add success");
+                ss.commit(); // batis가 커밋 수동으로 돌려놓음.
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            ss.close();
+        }
+    }
 }
 

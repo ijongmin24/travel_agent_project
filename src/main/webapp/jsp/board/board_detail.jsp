@@ -5,6 +5,8 @@
     <title>Title</title>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/detail.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/board/comment.js"></script>
 </head>
 <body>
 <div class="container">
@@ -16,15 +18,17 @@
         <div>${b.b_content}</div>
     </div>
     </c:forEach>
+
     <div class="comment">
-        <textarea name="c_content" id="" cols="30" rows="10"></textarea>
-        <button>취소</button>
-        <button>등록</button>
+        <div id="commentList">
+
+        </div>
+        <textarea name="c_content" id="c_content" cols="30" rows="10"></textarea>
+        <button type="button" id="cancelBtn">취소</button>
+        <button type="button" id="submitBtn">등록</button>
     </div>
 
 </div>
-
-
 
 
 </body>

@@ -11,6 +11,7 @@ import java.io.IOException;
 public class BoardDetailC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        게시글 조회
         BoardDAO.detail(request);
 
         request.setAttribute("content", "/jsp/board/board_detail.jsp");
@@ -18,7 +19,11 @@ public class BoardDetailC extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+//        댓글
+        BoardDAO.addComment(request);
 
+        request.setAttribute("content", "/jsp/board/board_detail.jsp");
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
 
     }
 }

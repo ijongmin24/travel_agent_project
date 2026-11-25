@@ -16,13 +16,13 @@
             <button>사진별로 보기</button>
         <div class="drop_down">
             <select name="place" id="place">
-                <option value="" selected disabled>지역</option>
+                <option value="">전체</option>
                 <c:forEach items="${regions}" var="r">
                 <option value="">${r.r_name}</option>
                 </c:forEach>
             </select>
             <select name="category" id="category">
-                <option value="" selected disabled>주제</option>
+                <option value="">주제</option>
                 <c:forEach items="${categories}" var="cg">
                     <option value="">${cg.cg_name}</option>
                 </c:forEach>
