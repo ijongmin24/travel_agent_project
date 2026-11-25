@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/content.css">
 </head>
 <body>
 <div class="container">
@@ -15,13 +16,13 @@
             <button>사진별로 보기</button>
         <div class="drop_down">
             <select name="place" id="place">
-                <option value="" selected disabled>지역</option>
+                <option value="">전체</option>
                 <c:forEach items="${regions}" var="r">
                 <option value="">${r.r_name}</option>
                 </c:forEach>
             </select>
             <select name="category" id="category">
-                <option value="" selected disabled>주제</option>
+                <option value="">주제</option>
                 <c:forEach items="${categories}" var="cg">
                     <option value="">${cg.cg_name}</option>
                 </c:forEach>
@@ -40,16 +41,17 @@
             <div>조회수</div>
             <div>스크랩수</div>
             <div>날짜</div>
-<%--        </div>--%>
-<%--        <c:forEach items="${어트리뷰트 값쓰셈}" var="board">--%>
-<%--            <div>${작성자}</div>--%>
-<%--            <div>${지역}</div>--%>
-<%--            <div>${제목}</div>--%>
-<%--            <div>${좋아요}</div>--%>
-<%--            <div>${조회수}</div>--%>
-<%--            <div>${스크랩수}</div>--%>
-<%--            <div>${날짜}</div>--%>
-<%--        </c:forEach>--%>
+        </div>
+        <c:forEach items="${boards}" var="b">
+            <div class="board" style="display: flex; gap: 20px;"onclick="location.href='/board/detail?b_no=' + ${b.b_no}">
+            <div >${b.b_u_id}</div><div>${b.r_name}</div>
+            <div>${b.b_title}</div>
+            <div>${b.b_like}</div>
+            <div>${b.b_view}</div>
+            <div>${b.b_scrap}</div>
+            <div>${b.b_created_date}</div>
+            </div>
+        </c:forEach>
     </div>
 </div>
 
