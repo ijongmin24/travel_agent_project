@@ -26,7 +26,7 @@
 </c:forEach>
 
 <%-- 소도시명 --%>
-<c:forEach items="${viewSA}" var="sa">
+<c:forEach items="${viewSAProduct}" var="sa">
     <div class="sa_name">
             ${sa.sa_name}
     </div>

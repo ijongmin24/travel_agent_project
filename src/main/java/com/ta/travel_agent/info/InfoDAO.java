@@ -67,4 +67,19 @@ public class InfoDAO {
             }
         }
     }
+    // 가게 조회
+    public static void viewRes(HttpServletRequest request) {
+        SqlSession ss = null;
+        try {
+            ss = MyBatis.connect();
+            List<InfoRestaurantDTO> viewRes = ss.selectList("gyu.viewRes");
+            request.setAttribute("viewRes", viewRes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ss != null) {
+                ss.close();
+            }
+        }
+    }
 }

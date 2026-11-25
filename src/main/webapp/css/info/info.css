@@ -108,8 +108,6 @@
     height: 50px;
     text-align: center;
     padding: 10px;
-    margin-bottom: 50px;
-    margin-top: 10px;
     margin: 10px auto 50px;
 }
 /* 소도시명 */
@@ -156,4 +154,73 @@
     min-height: 150px;
     padding: 15px;
     box-sizing: border-box;
+}
+
+/***********
+ 소도시 페이지
+************/
+
+/* 지역 정보 전체 박스 */
+.area-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: 80%;
+    min-height: 200px;
+    margin: 0 auto 30px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+/* 지역 사진 큰 틀 */
+.area-img {
+    width: 250px;
+    height: 160px;
+    flex-shrink: 0;
+}
+/* 지역 사진 */
+.area-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* 지역 이름 + 설명 영역 */
+.area-details {
+    flex: 1;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+}
+/* 지역 이름 */
+.area-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0 solid #0c3cdd;
+    background-color: #0c3cdd;
+    border-radius: 10px;
+    color: #f6f6f8;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+/* 지역 설명 */
+.area-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    margin-top: 10px;
+}
+
+/***********
+ 가게 페이지
+************/
+
+/* 가게 상세설명 */
+.res-description {
+    padding: 10px;
+    line-height: 2;
+    margin-top: 2px;
 }

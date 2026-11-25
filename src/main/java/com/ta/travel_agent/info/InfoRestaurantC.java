@@ -11,7 +11,9 @@ import java.io.IOException;
 public class InfoRestaurantC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        InfoDAO.viewHotBoard(request);
+        InfoDAO.viewBA(request);
+        InfoDAO.viewSA(request);
+        InfoDAO.viewRes(request);
 
         request.setAttribute("content", "jsp/info/info_restaurant.jsp");
         request.getRequestDispatcher("index.jsp").forward(request,response);
