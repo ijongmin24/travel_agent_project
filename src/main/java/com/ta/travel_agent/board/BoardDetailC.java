@@ -20,10 +20,15 @@ public class BoardDetailC extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 //        댓글
-        BoardDAO.addComment(request);
+        request.setCharacterEncoding("UTF-8");
 
-        request.setAttribute("content", "/jsp/board/board_detail.jsp");
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        BoardDAO.addComment(request, response);
+
+        
+
+
+//        request.setAttribute("content", "/jsp/board/board_detail.jsp");
+//        request.getRequestDispatcher("/index.jsp").forward(request, response);
 
     }
 }

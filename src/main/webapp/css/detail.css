@@ -139,3 +139,34 @@
     background-color: #d9dee7;
 }
 
+/* 댓글 목록 영역 */
+#commentList {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* 댓글 하나 */
+#commentList > div {
+    padding: 15px 18px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #e5e9ef;
+    border-radius: 7px;
+}
+
+/* 댓글 작성자 */
+#commentList > div > div:first-child {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #3568c8;
+}
+
+/* 댓글 내용 */
+#commentList > div > div:last-child {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}

@@ -52,6 +52,12 @@
         #{c_u_id})
     </insert>
 
+    <select id="selectComment" resultType="com.ta.travel_agent.board.CommentsDTO">
+        select *
+        from comments
+        where c_b_no = #{c_b_no}
+        ORDER BY c_created_date DESC, c_no DESC
+    </select>
 
 </mapper>
 

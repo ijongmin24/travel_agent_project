@@ -1,9 +1,12 @@
 package com.ta.travel_agent.board;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.ta.travel_agent.MyBatis;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -86,6 +89,10 @@ public class BoardDAO {
 
             List<BoardDTO> boards = ss.selectList("jmqqq.detailBoard", b_no);
             request.setAttribute("boards",boards);
+
+
+            List<CommentsDTO> comments = ss.selectList("jmqqq.selectComment", b_no);
+            request.setAttribute("comments", comments);
         } catch (Exception e) {
             throw new RuntimeException(e);
 
@@ -94,18 +101,20 @@ public class BoardDAO {
         }
     }
 
-    public static void addComment(HttpServletRequest request) {
+    public static void addComment(HttpServletRequest request, HttpServletResponse response) {
         SqlSession ss = null;
 
         try {
             ss = MyBatis.connect();
+
             String c_content = request.getParameter("c_content");
             SimpleDateFormat c_created_date = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat c_updated_date = new SimpleDateFormat("yyyy-MM-dd");
             String c_status = "N";
             String c_b_no = request.getParameter("c_b_no");
             String c_parent_comment = "null";
-            String c_u_id = request.getParameter("c_u_id");
+            String c_u_id ="bo";
+//            String c_u_id = request.getParameter("c_u_id");
 
             Map<String, String> params = new HashMap<>();
             params.put("c_content", c_content);
@@ -116,9 +125,21 @@ public class BoardDAO {
             params.put("c_parent_comment", c_parent_comment);
             params.put("c_u_id", c_u_id);
 
+            //db comments b_no = c_b_no조회
+            // List<comment>
+            // req.setAtttr
+
+
             if (ss.insert("jmqqq.addComment", params) == 1) {
                 System.out.println("add success");
                 ss.commit(); // batis가 커밋 수동으로 돌려놓음.
+
+                JsonObject obj = new JsonObject();
+                obj.addProperty("content", c_content );
+
+                System.out.println(obj);
+                response.setContentType("application/json;charset=UTF-8");
+                response.getWriter().println(obj);
             }
 
         } catch (Exception e) {
