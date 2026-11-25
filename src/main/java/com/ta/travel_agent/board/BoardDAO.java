@@ -40,19 +40,20 @@ public class BoardDAO {
             // 값 받기
             String b_no = request.getParameter("b_no");
             String b_title = request.getParameter("b_title");
-            String product_content = request.getParameter("b_content");
-            String b_view = request.getParameter("product_exp");
+            System.out.println("제목 : " + b_title);
+            String b_content = request.getParameter("b_content");
+            String b_view = "0";
             SimpleDateFormat b_created_date = new SimpleDateFormat("yyyy-MM-dd");
             SimpleDateFormat b_updated_date = new SimpleDateFormat("yyyy-MM-dd");
-            String b_status = request.getParameter("b_status");
-            String b_u_id = request.getParameter("b_u_id");
-            String b_region_no = request.getParameter("b_region_no");
-            String b_cg_no = request.getParameter("b_cg_no");
+            String b_status = "Y";
+            String b_u_id = "bo";
+            String b_region_no = request.getParameter("b_region");
+            String b_cg_no = request.getParameter("b_category");
 
             Map<String, String> params = new HashMap<>();
             params.put("b_no", b_no);
             params.put("b_title", b_title);
-            params.put("product_content", product_content);
+            params.put("b_content", b_content);
             params.put("b_view", b_view);
             params.put("b_created_date", b_created_date.format(new Date()));
             params.put("b_updated_date", b_updated_date.format(new Date()));

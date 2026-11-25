@@ -377,4 +377,8 @@ insert into BOARD values(board_seq.nextval, 'title', 'content', 100000,
 
 select * from BOARD;
 
+select * from users;
+
+
+
 
