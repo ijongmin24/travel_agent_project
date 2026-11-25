@@ -19,7 +19,7 @@
     </insert>
 
     <select id="getBoard" resultType="com.ta.travel_agent.board.BoardDTO">
-        select b_u_id, r_name, b_title, b_like, b_scrap, B_CREATED_DATE
+        select board.b_no, b_u_id, r_name, b_title, b_like, b_scrap, B_CREATED_DATE
         from board,
         region,
         (select b_no, count(*) as b_like
@@ -35,6 +35,14 @@
         where B_REGION_NO = r_no
         and board.b_no = board_like.B_NO(+)
         and board.b_no = board_scrap.B_NO(+)
+    </select>
+
+    <select id="detailBoard" resultType="com.ta.travel_agent.board.BoardDTO">
+        select *
+        from board, region, category
+        where b_region_no = r_no and
+              b_cg_no = cg_no and
+              b_no = #{b_no}
     </select>
 
 

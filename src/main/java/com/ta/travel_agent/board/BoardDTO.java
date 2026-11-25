@@ -14,6 +14,7 @@ public class BoardDTO {
     private String b_title;
     private String b_content;
     private String r_name;
+    private String cg_name;
     private int b_scrap;
     private int b_view;
     private int b_like;

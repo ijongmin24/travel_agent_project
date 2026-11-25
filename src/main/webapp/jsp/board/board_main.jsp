@@ -4,6 +4,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/content.css">
 </head>
 <body>
 <div class="container">
@@ -42,9 +43,8 @@
             <div>날짜</div>
         </div>
         <c:forEach items="${boards}" var="b">
-            <div class="board" style="display: flex; gap: 20px;">
-            <div>${b.b_u_id}</div>
-            <div>${b.r_name}</div>
+            <div class="board" style="display: flex; gap: 20px;"onclick="location.href='/board/detail?b_no=' + ${b.b_no}">
+            <div >${b.b_u_id}</div><div>${b.r_name}</div>
             <div>${b.b_title}</div>
             <div>${b.b_like}</div>
             <div>${b.b_view}</div>

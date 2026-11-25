@@ -38,6 +38,7 @@ public class BoardDAO {
 
         try {
             ss = MyBatis.connect();
+            request.setCharacterEncoding("UTF-8");
 
             // 값 받기
             String b_no = request.getParameter("b_no");
@@ -70,6 +71,24 @@ public class BoardDAO {
 
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            ss.close();
+        }
+    }
+
+    public static void detail(HttpServletRequest request) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+
+            String b_no = request.getParameter("b_no");
+
+            List<BoardDTO> boards = ss.selectList("jmqqq.detailBoard", b_no);
+            request.setAttribute("boards",boards);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+
         } finally {
             ss.close();
         }
