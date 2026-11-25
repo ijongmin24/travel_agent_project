@@ -1,0 +1,172 @@
+
+/* 전체 영역 */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* 게시글 카드 */
+.wrap {
+    padding: 30px;
+    margin-bottom: 25px;
+    background-color: #fff;
+    border: 1px solid #e5e9ef;
+    border-radius: 10px;
+}
+
+/* 게시글 제목 */
+.wrap div:first-child {
+    font-size: 25px;
+    font-weight: 700;
+    color: #222;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e9edf2;
+    margin-bottom: 15px;
+}
+
+/* 주제 및 지역 */
+.wrap div:nth-child(2),
+.wrap div:nth-child(3) {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-right: 7px;
+    margin-bottom: 15px;
+    background-color: #edf3ff;
+    color: #3568c8;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+/* 게시글 내용 */
+.wrap div:nth-child(4) {
+    min-height: 250px;
+    padding: 20px 0;
+    color: #444;
+    font-size: 15px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+/* 댓글 영역 */
+.comment {
+    padding: 25px;
+    background-color: #f8f9fb;
+    border: 1px solid #e5e9ef;
+    border-radius: 10px;
+}
+
+/* 댓글 입력창 */
+.comment textarea {
+    display: block;
+    width: 100%;
+    min-height: 120px;
+    padding: 15px;
+    border: 1px solid #d9dee7;
+    border-radius: 7px;
+    box-sizing: border-box;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+}
+
+.comment textarea:focus {
+    border-color: #4779d9;
+}
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px auto;
+        padding: 12px;
+    }
+
+    .wrap {
+        padding: 20px;
+    }
+
+    .wrap div:first-child {
+        font-size: 21px;
+    }
+
+    .comment {
+        padding: 15px;
+    }
+}
+
+/* 댓글 버튼 공통 */
+.comment button {
+    min-width: 90px;
+    height: 40px;
+    margin-top: 12px;
+    margin-left: 8px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* 버튼 오른쪽 정렬 */
+.comment {
+    text-align: right;
+}
+
+/* 등록 버튼 */
+.comment button:first-of-type {
+    background-color:  #e9edf2;
+
+    color: #444;
+
+}
+
+.comment button:first-of-type:hover {
+    background-color: #2855a8;
+}
+
+/* 취소 버튼 */
+.comment button:last-of-type {
+    background-color:  #3568c8;
+    color:  white;
+}
+
+.comment button:last-of-type:hover {
+    background-color: #d9dee7;
+}
+
+/* 댓글 목록 영역 */
+#commentList {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* 댓글 하나 */
+#commentList > div {
+    padding: 15px 18px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #e5e9ef;
+    border-radius: 7px;
+}
+
+/* 댓글 작성자 */
+#commentList > div > div:first-child {
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #3568c8;
+}
+
+/* 댓글 내용 */
+#commentList > div > div:last-child {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}

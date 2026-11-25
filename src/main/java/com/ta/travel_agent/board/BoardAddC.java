@@ -18,6 +18,8 @@ public class BoardAddC extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
+
         BoardDAO.add(request);
 
         response.sendRedirect("/board");
