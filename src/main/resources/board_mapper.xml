@@ -35,6 +35,16 @@
         where B_REGION_NO = r_no
         and board.b_no = board_like.B_NO(+)
         and board.b_no = board_scrap.B_NO(+)
+
+        <if test="place != null and place != ''">
+            AND b_region_no = #{place}
+        </if>
+
+        <if test="category != null and category != ''">
+            AND b_cg_no = #{category}
+        </if>
+
+        ORDER BY b_created_date DESC
     </select>
 
     <select id="detailBoard" resultType="com.ta.travel_agent.board.BoardDTO">
@@ -48,15 +58,30 @@
     <insert id="addComment" >
         insert into COMMENTS
         values (comments_seq.nextval,#{c_content}, sysdate,
-        sysdate, 'N', #{c_b_no}, null,
+        sysdate, 'N', #{c_b_no}, #{c_parent_comment, jdbcType=NUMERIC},
         #{c_u_id})
     </insert>
 
     <select id="selectComment" resultType="com.ta.travel_agent.board.CommentsDTO">
         select *
         from comments
-        where c_b_no = #{c_b_no}
+        where c_b_no = #{value}
+        and c_parent_comment is null
         ORDER BY c_created_date DESC, c_no DESC
+    </select>
+
+    <insert id="addReply">
+        insert into COMMENTS
+        values (comments_seq.nextval,#{c_content}, sysdate,
+        sysdate, 'N', #{c_b_no}, #{c_parent_comment},
+        #{c_u_id})
+    </insert>
+
+    <select id="replyComment" resultType="com.ta.travel_agent.board.CommentsDTO">
+        select *
+        from comments
+        where c_parent_comment = #{value}
+        order by c_created_date ASC
     </select>
 
 </mapper>

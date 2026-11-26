@@ -1,4 +1,3 @@
-
 /* 전체 본문 */
 .content {
     width: 100%;
@@ -102,44 +101,49 @@
     border-bottom: 1px solid #e9edf2;
     font-size: 14px;
     color: #444;
-}
 
-/* 게시판 제목 행 */
-.board:first-of-type {
-    background-color: #f5f7fa;
-    border-top: 2px solid #333;
-    border-bottom: 1px solid #dce1e8;
-    font-weight: bold;
-    color: #333;
-}
+    /* 게시판 제목 행 */
 
-/* 게시글 행 */
-.board:not(:first-of-type) {
-    transition: background-color 0.2s;
-}
+    .board:first-of-type {
+        background-color: #f5f7fa;
+        border-top: 2px solid #333;
+        border-bottom: 1px solid #dce1e8;
+        font-weight: bold;
+        color: #333;
+    }
 
-.board:not(:first-of-type):hover {
-    background-color: #f7f9fc;
-}
+    /* 게시글 행 */
 
-/* 게시글 제목 */
-.board div:nth-child(3) {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+    .board:not(:first-of-type) {
+        transition: background-color 0.2s;
+    }
 
-/* 작성자 */
-.board div:first-child {
-    color: #555;
-}
+    .board:not(:first-of-type):hover {
+        background-color: #f7f9fc;
+    }
 
-/* 작성자 클릭 영역 */
-.board div[onclick] {
-    cursor: pointer;
-    color: #3568c8;
-}
+    /* 게시글 제목 */
 
-.board div[onclick]:hover {
-    text-decoration: underline;
+    .board div:nth-child(3) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* 작성자 */
+
+    .board div:first-child {
+        color: #555;
+    }
+
+    /* 작성자 클릭 영역 */
+
+    .board div[onclick] {
+        cursor: pointer;
+        color: #3568c8;
+    }
+
+    .board div[onclick]:hover {
+        text-decoration: underline;
+    }
 }

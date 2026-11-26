@@ -231,3 +231,151 @@
         min-height: 85px;
     }
 }
+/* =========================
+   답글 작성 영역
+========================= */
+
+.reply_write {
+    margin-top: 15px;
+    margin-left: 20px;
+    padding: 15px;
+    background-color: #f8f9fb;
+    border: 1px solid #e5e9ef;
+    border-radius: 7px;
+}
+
+/* 답글 입력창 */
+.reply_write textarea {
+    display: block;
+    width: 100%;
+    min-height: 80px;
+    padding: 12px;
+    box-sizing: border-box;
+
+    border: 1px solid #d9dee7;
+    border-radius: 5px;
+    background-color: #fff;
+
+    font-size: 13px;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+}
+
+.reply_write textarea:focus {
+    border-color: #4779d9;
+}
+
+/* 답글 버튼 영역 */
+.reply_write_button {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+/* 답글 버튼 공통 */
+.reply_write_button button {
+    min-width: 65px;
+    height: 34px;
+    padding: 0 14px;
+
+    border: 1px solid #d9dee7;
+    border-radius: 5px;
+
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* 답글 취소 */
+.replyCancelBtn {
+    background-color: #fff;
+    color: #555;
+}
+
+.replyCancelBtn:hover {
+    background-color: #f0f2f5;
+}
+
+/* 답글 등록 */
+.replySubmitBtn {
+    background-color: #3568c8;
+    border-color: #3568c8 !important;
+    color: #fff;
+}
+
+.replySubmitBtn:hover {
+    background-color: #2855a8;
+}
+
+/* 모바일 대응 */
+@media (max-width: 600px) {
+    .reply_write {
+        margin-left: 10px;
+        padding: 12px;
+    }
+
+    .reply_write textarea {
+        min-height: 70px;
+    }
+}
+/* 대댓글 목록 */
+.reply_list {
+    margin-left: 25px;
+    padding-left: 18px;
+    border-left: 1px solid #e5e5e5;
+    margin-top: 12px;
+}
+
+/* 대댓글 하나 */
+.reply_item {
+    position: relative;
+    padding: 8px 0 12px 0;
+}
+
+/* 대댓글 연결선 */
+.reply_item::before {
+    content: "";
+    position: absolute;
+    top: 17px;
+    left: -19px;
+    width: 12px;
+    height: 12px;
+    border-left: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    border-bottom-left-radius: 6px;
+}
+
+/* 대댓글 작성자 */
+.reply_item .comment_writer {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* 대댓글 내용 */
+.reply_item .comment_content {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 5px;
+    word-break: break-word;
+}
+
+/* 대댓글 날짜 */
+.reply_item .comment_info {
+    font-size: 12px;
+    color: #999;
+}
+/* 평소에는 대댓글 숨기기 */
+.reply_list {
+    display: none;
+}
+
+/* 답글 버튼을 눌렀을 때 표시 */
+.reply_list.active {
+    display: block;
+}
