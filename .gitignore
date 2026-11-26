@@ -41,3 +41,4 @@ build/
 ### MYBATIS ###
 src/main/resources/db.properties
 .idea/
+src/main/webapp/js/config.js
