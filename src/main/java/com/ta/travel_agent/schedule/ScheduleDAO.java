@@ -77,8 +77,10 @@ public class ScheduleDAO {
         try {
             ss = MyBatis.connect();
 
-            List<RegionDTO> regions = ss.selectList("bo.getAllPlace");
-            req.setAttribute("regions", regions);
+            String travel_no = req.getParameter("travel_no");
+
+            List<ScheduleSpotDTO> places = ss.selectList("bo.getAllPlace", travel_no);
+            req.setAttribute("places", places);
 
 
         } catch (Exception e) {
