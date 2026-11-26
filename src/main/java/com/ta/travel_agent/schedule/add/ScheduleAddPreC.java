@@ -1,4 +1,6 @@
-package com.ta.travel_agent.schedule;
+package com.ta.travel_agent.schedule.add;
+
+import com.ta.travel_agent.schedule.ScheduleDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

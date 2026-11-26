@@ -1,4 +1,4 @@
-package com.ta.travel_agent.schedule;
+package com.ta.travel_agent.schedule.spot;
 
 import com.google.gson.Gson;
 import lombok.AllArgsConstructor;

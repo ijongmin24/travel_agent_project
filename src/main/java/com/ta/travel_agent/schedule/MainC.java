@@ -14,7 +14,7 @@ public class MainC extends HttpServlet {
 
         req.setAttribute("content", "/jsp/schedule/schedule_main.jsp");
 
-        req.getRequestDispatcher("index.jsp").forward(req, res);
+        req.getRequestDispatcher("/index.jsp").forward(req, res);
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {

@@ -3,8 +3,9 @@ package com.ta.travel_agent.schedule;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.ta.travel_agent.MyBatis;
-import com.ta.travel_agent.board.CategoryDTO;
 import com.ta.travel_agent.board.RegionDTO;
+import com.ta.travel_agent.schedule.spot.ScheduleSpotDTO;
+import com.ta.travel_agent.schedule.spot.SpotDTO;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.servlet.http.HttpServletRequest;
@@ -82,6 +83,44 @@ public class ScheduleDAO {
             List<ScheduleSpotDTO> places = ss.selectList("bo.getAllPlace", travel_no);
             req.setAttribute("places", places);
 
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ss.close();
+        }
+    }
+
+    public static void getMyTravelList(HttpServletRequest req) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+
+//            String id = req.getParameter("id");
+            String id = "bo";
+
+            List<TravelDTO> travels = ss.selectList("bo.getMyTravel", id);
+            req.setAttribute("travels", travels);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ss.close();
+        }
+    }
+
+    public static void getOhtersTravelList(HttpServletRequest req) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+
+//            String id = req.getParameter("id");
+            String id = "bo";
+
+            List<TravelDTO> travels = ss.selectList("bo.getOthersTravel", id);
+            req.setAttribute("travels", travels);
 
         } catch (Exception e) {
             e.printStackTrace();

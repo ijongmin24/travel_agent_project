@@ -4,12 +4,29 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bo">
 
-    <!--    일정-->
+    <!-- 일정 추가 -->
     <insert id="addTravel">
 
     </insert>
 
-    <select id="getAllPlace" resultType="com.ta.travel_agent.schedule.ScheduleSpotDTO">
+    <!-- 일정 조회 -->
+    <select id="getMyTravel" resultType="com.ta.travel_agent.schedule.TravelDTO">
+        select *
+        from travel, region
+        where t_r_no = r_no
+        and t_u_id = #{id}
+        order by t_updated_date desc
+    </select>
+
+    <select id="getOthersTravel" resultType="com.ta.travel_agent.schedule.TravelDTO">
+        select *
+        from travel, region
+        where t_r_no = r_no
+        and t_u_id != #{id}
+        order by t_updated_date desc
+    </select>
+
+    <select id="getAllPlace" resultType="com.ta.travel_agent.schedule.spot.ScheduleSpotDTO">
         select *
         from SCHEDULE, SCHEDULE_PLACE, SPOT
         where s_p_s_no = s_no
@@ -17,7 +34,8 @@
         AND s_t_no = #{travel_no}
     </select>
 
-    <select id="getSpotDetail" resultType="com.ta.travel_agent.schedule.SpotDTO">
+    <!-- 장소 조회 spot api관련 -->
+    <select id="getSpotDetail" resultType="com.ta.travel_agent.schedule.spot.SpotDTO">
         select * from spot where spot_no = #{spot_no}
     </select>
 
