@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,25 +17,26 @@
             <button onclick="location.href='/board/add'">글쓰기</button>
             <button>목록별로 보기</button>
             <button>사진별로 보기</button>
-        <div class="drop_down">
-            <select name="place" id="place">
-                <option value="">전체</option>
-                <c:forEach items="${regions}" var="r">
-                <option value="${r.r_no}">${r.r_name}</option>
-                </c:forEach>
-            </select>
-            <select name="category" id="category">
-                <option value="">주제</option>
-                <c:forEach items="${categories}" var="cg">
-                    <option value="${cg.cg_no}">${cg.cg_name}</option>
-                </c:forEach>
-            </select>
-        </div>
+            <div class="drop_down">
+                <select name="place" id="place">
+                    <option value="">전체</option>
+                    <c:forEach items="${regions}" var="r">
+                        <option value="${r.r_no}">${r.r_name}</option>
+                    </c:forEach>
+                </select>
+                <select name="category" id="category">
+                    <option value="">주제</option>
+                    <c:forEach items="${categories}" var="cg">
+                        <option value="${cg.cg_no}">${cg.cg_name}</option>
+                    </c:forEach>
+                </select>
+            </div>
             <div class="search">
                 <input type="text" placeholder="검색어를 입력하세요">
                 <button type="button"
-                id="searchBtn">
-                    검색</button>
+                        id="searchBtn">
+                    검색
+                </button>
             </div>
         </div>
         <div class="board" style="display: flex; gap: 20px;">
@@ -47,13 +49,14 @@
             <div>날짜</div>
         </div>
         <c:forEach items="${boards}" var="b">
-            <div class="board"onclick="location.href='/board/detail?b_no=' + ${b.b_no}">
-            <div >${b.b_u_id}</div><div>${b.r_name}</div>
-            <div>${b.b_title}</div>
-            <div>${b.b_like}</div>
-            <div>${b.b_view}</div>
-            <div>${b.b_scrap}</div>
-            <div>${b.b_created_date}</div>
+            <div class="board" onclick="location.href='/board/detail?b_no=' + ${b.b_no}">
+                <div>${b.b_u_id}</div>
+                <div>${b.r_name}</div>
+                <div>${b.b_title}</div>
+                <div>${b.b_like}</div>
+                <div>${b.b_view}</div>
+                <div>${b.b_scrap}</div>
+                <div><fmt:formatDate value="${b.b_created_date}" pattern="yyyy-MM-dd"/></div>
             </div>
         </c:forEach>
     </div>

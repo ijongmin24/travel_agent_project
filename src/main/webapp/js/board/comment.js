@@ -20,10 +20,20 @@ $(function () {
                 c_content: content,
             }
         }).done(function (resData) {
-
             let html = "";
 
             resData.forEach(function (comments) {
+                // 이미 화면에 있는 댓글인지 확인
+                let exists = $("#commentList .comment_item").filter(function () {
+                    return $(this).find(".replyBtn").data("no") == comments.c_no;
+                }).length > 0;
+
+                // 이미 있으면 건너뛰기
+                if (exists) {
+                    return;
+                }
+
+
                 let date = new Date(comments.c_created_date);
 
                 let formattedDate =
@@ -47,16 +57,22 @@ $(function () {
                 class="replyBtn"
                 data-no="${comments.c_no}">답글</button>
                 </div>
-                
                 <div class="reply_list"></div>
-                
                 </div>
                 `;
+                $("#commentList").prepend(html);
             });
 
-            $("#commentList").html(html);
+            // $("#commentList").html(html);
+            // 댓글 입력창 비우기
             $("#c_content").val("");
-        }).fail(function (){
+
+            // 열려 있는 모든 대댓글 목록 닫기
+            $(".reply_list").removeClass("active");
+
+            // 열려 있는 모든 답글 입력창 제거
+            $(".reply_write").remove();
+        }).fail(function () {
             alert("댓글 등록 실패");
         });
 
@@ -71,9 +87,14 @@ $(function () {
 
         let parentNo = $(this).data("no");
 
+        console.log("답글 버튼 클릭");
+        console.log("부모 댓글 번호:", parentNo);
         // 대댓글 목록 열고 닫기
         let parentItem = $(this).closest(".comment_item");
         let replyList = parentItem.children(".reply_list");
+        console.log("대댓글 추가 대상:", parentItem.length);
+        console.log("대댓글 목록:", replyList.length);
+        console.log("추가된 답글:", replyList.html());
 
         // 현재 대댓글 목록이 열려 있는지 확인
         let isOpen = replyList.hasClass("active");
@@ -149,6 +170,9 @@ $(function () {
 
             // 해당 부모 댓글의 답글 목록 찾기
             let replyList = parentItem.children(".reply_list");
+            console.log("부모 댓글:", parentItem.length);
+            console.log("답글 목록:", replyList.length);
+            console.log("답글 목록 HTML:", replyList.html());
 
             // 날짜 생성
             let date = new Date();
@@ -180,6 +204,8 @@ $(function () {
 
             // 해당 답글 목록에만 추가
             replyList.append(replyItem);
+            console.log("추가 직후 HTML:", replyList[0].outerHTML);
+            console.log("추가된 답글 개수:", replyList.children(".reply_item").length);
 
             // 입력창 비우기
             replyWrite.find(".reply_content").val("");
