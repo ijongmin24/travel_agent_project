@@ -19,13 +19,14 @@ function handleViewPlace(dom) {
     })
 }
 
-$("#map-container").html(`<iframe
-                width="600"
-                height="450"
-                style="border:0"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="strict-origin-when-cross-origin"
-                src="https://www.google.com/maps/embed/v1/place?key=${CONFIG.GOOGLE_MAPS_API_KEY}&q=Space+Needle,Seattle+WA">
-        </iframe>
+$("#map-container").html(`
+    <iframe
+        width="600"
+        height="450"
+        style="border:0"
+        loading="lazy"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin"
+        src="https://www.google.com/maps/embed/v1/place?key=${CONFIG.GOOGLE_MAPS_API_KEY}&q=구라시키+미관지구">
+    </iframe>
 `);
