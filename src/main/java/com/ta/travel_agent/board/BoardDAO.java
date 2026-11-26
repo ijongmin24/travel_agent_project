@@ -8,10 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BoardDAO {
 
@@ -134,12 +131,18 @@ public class BoardDAO {
                 System.out.println("add success");
                 ss.commit(); // batis가 커밋 수동으로 돌려놓음.
 
+                List<CommentsDTO> comments = ss.selectList("jmqqq.selectComment", c_b_no);
+
+                ArrayList<String> comments_json = new ArrayList<>();
+                for (CommentsDTO comment : comments) {
+                    comments_json.add(comment.toJson());
+                }
                 JsonObject obj = new JsonObject();
                 obj.addProperty("content", c_content );
 
-                System.out.println(obj);
                 response.setContentType("application/json;charset=UTF-8");
-                response.getWriter().println(obj);
+                response.getWriter().println(comments_json);
+
             }
 
         } catch (Exception e) {

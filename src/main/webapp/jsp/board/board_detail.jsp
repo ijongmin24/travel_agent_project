@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -25,7 +26,7 @@
                 <div>
                         ${com.c_u_id}
                         ${com.c_content}
-                        ${com.c_created_date}
+                    <fmt:formatDate value="${com.c_created_date}" pattern="yyyy-MM-dd"/>
                 </div>
         </c:forEach>
             </div>

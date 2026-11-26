@@ -11,13 +11,31 @@ $(function(){
             data:{
                 c_b_no: no,
                 c_content: content,
-
             }
         }).done(function (resData) {
-            console.log(resData);
-            $('#commentList').prepend(resData.content);
-        }).fail(function () {
 
+            let html = "";
+
+            resData.forEach(function(comments) {
+                html +=`
+                <div>
+                ${comments.c_b_no}
+                ${comments.c_content}
+                ${comments.c_created_date}
+                </div>
+                `
+            })
+
+            $("#commentList").html(html);
+
+            $("#c_content").val("");
+        }).fail(function () {
+            alert("failed")
         })
+
     });
+
+    $("#cancelBtn").click(function () {
+        $("#c_content").val("");
+    })
 });
