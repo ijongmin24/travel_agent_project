@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -19,20 +20,57 @@
         </div>
     </c:forEach>
 
-    <div class="comment">
-            <div id="commentList">
-        <c:forEach items="${comments}" var="com">
-                <div>
-                        ${com.c_u_id}
-                        ${com.c_content}
-                        ${com.c_created_date}
-                </div>
-        </c:forEach>
-            </div>
-        <textarea name="c_content" id="c_content" cols="30" rows="10" data-no="${boards[0].b_no}"></textarea>
-        <button type="button" id="cancelBtn">취소</button>
-        <button type="button" id="submitBtn">등록</button>
+    <div class="comment_write">
+        <textarea name="c_content" id="c_content"
+                  placeholder="댓글을 입력해주세요."
+                  data-no="${boards[0].b_no}"></textarea>
+        <div class="comment_write_button">
+            <button type="button" id="cancelBtn">취소</button>
+            <button type="button" id="submitBtn">등록</button>
+        </div>
     </div>
+
+    <div class="comment">
+        <div id="commentList">
+            <c:forEach items="${comments}" var="com">
+
+                <div class="comment_item">
+                    <div class="comment_writer"> ${com.c_u_id} </div>
+                    <div class="comment_content"> ${com.c_content}</div>
+                    <div class="comment_info">
+                        <span><fmt:formatDate value="${com.c_created_date}" pattern="yyyy-MM-dd"/></span>
+                        <button type="button"
+                                class="replyBtn"
+                                data-no="${com.c_no}">
+                            답글
+                        </button>
+                    </div>
+
+                    <div class="reply_list">
+                        <c:forEach items="${com.replies}" var="reply">
+
+                            <div class="reply_item">
+                                <div class="comment_writer">
+                                        ${reply.c_u_id}
+                                </div>
+
+                                <div class="comment_content">
+                                        ${reply.c_content}
+                                </div>
+
+                                <div class="comment_info">
+                                    <fmt:formatDate value="${reply.c_created_date}"
+                                                    pattern="yyyy-MM-dd"/>
+                                </div>
+                            </div>
+
+                        </c:forEach>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+
 
 </div>
 

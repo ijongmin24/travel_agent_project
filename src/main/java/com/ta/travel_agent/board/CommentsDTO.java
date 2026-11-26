@@ -1,10 +1,12 @@
 package com.ta.travel_agent.board;
 
+import com.google.gson.Gson;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,4 +20,13 @@ public class CommentsDTO {
     private int c_b_no;
     private int c_parent_comment;
     private String c_u_id;
+
+    private List<CommentsDTO> replies;
+
+    public String toJson() {
+        Gson gson = new Gson();
+
+
+        return gson.toJson(this);
+    }
 }

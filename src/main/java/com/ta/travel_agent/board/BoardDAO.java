@@ -8,10 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class BoardDAO {
 
@@ -25,7 +22,14 @@ public class BoardDAO {
             ss = MyBatis.connect();
             List<RegionDTO> regions = ss.selectList("jmqqq.getRegion");
             List<CategoryDTO> categories = ss.selectList("jmqqq.getCategory");
-            List<BoardDTO> boards = ss.selectList("jmqqq.getBoard");
+
+            String place = request.getParameter("place");
+            String category = request.getParameter("category");
+            Map<String, String> params = new HashMap<>();
+            params.put("place", place);
+            params.put("category", category);
+            List<BoardDTO> boards = ss.selectList("jmqqq.getBoard", params);
+
             request.setAttribute("regions",regions);
             request.setAttribute("categories",categories);
             request.setAttribute("boards",boards);
@@ -92,6 +96,14 @@ public class BoardDAO {
 
 
             List<CommentsDTO> comments = ss.selectList("jmqqq.selectComment", b_no);
+
+//             답글 조회
+            for (CommentsDTO comment : comments) {
+
+                List<CommentsDTO> replies = ss.selectList("jmqqq.replyComment", comment.getC_no());
+
+                comment.setReplies(replies);
+            }
             request.setAttribute("comments", comments);
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -112,7 +124,7 @@ public class BoardDAO {
             SimpleDateFormat c_updated_date = new SimpleDateFormat("yyyy-MM-dd");
             String c_status = "N";
             String c_b_no = request.getParameter("c_b_no");
-            String c_parent_comment = "null";
+            String c_parent_comment = request.getParameter("c_parent_comment");
             String c_u_id ="bo";
 //            String c_u_id = request.getParameter("c_u_id");
 
@@ -129,17 +141,22 @@ public class BoardDAO {
             // List<comment>
             // req.setAtttr
 
-
             if (ss.insert("jmqqq.addComment", params) == 1) {
                 System.out.println("add success");
                 ss.commit(); // batis가 커밋 수동으로 돌려놓음.
 
+                List<CommentsDTO> comments = ss.selectList("jmqqq.selectComment", c_b_no);
+
+                ArrayList<String> comments_json = new ArrayList<>();
+                for (CommentsDTO comment : comments) {
+                    comments_json.add(comment.toJson());
+                }
                 JsonObject obj = new JsonObject();
                 obj.addProperty("content", c_content );
 
-                System.out.println(obj);
                 response.setContentType("application/json;charset=UTF-8");
-                response.getWriter().println(obj);
+                response.getWriter().println(comments_json);
+
             }
 
         } catch (Exception e) {
