@@ -21,18 +21,29 @@
     </c:forEach>
 
     <div class="comment">
-            <div id="commentList">
-        <c:forEach items="${comments}" var="com">
-                <div>
-                        ${com.c_u_id}
-                        ${com.c_content}
-                    <fmt:formatDate value="${com.c_created_date}" pattern="yyyy-MM-dd"/>
+        <div id="commentList">
+            <c:forEach items="${comments}" var="com">
+
+                <div class="comment_item">
+                    <div class="comment_writer"> ${com.c_u_id} </div>
+                    <div class="comment_content"> ${com.c_content}</div>
+                    <div class="comment_info">
+                        <span><fmt:formatDate value="${com.c_created_date}" pattern="yyyy-MM-dd"/></span>
+                        <button>답글</button>
+                    </div>
                 </div>
-        </c:forEach>
-            </div>
-        <textarea name="c_content" id="c_content" cols="30" rows="10" data-no="${boards[0].b_no}"></textarea>
-        <button type="button" id="cancelBtn">취소</button>
-        <button type="button" id="submitBtn">등록</button>
+            </c:forEach>
+        </div>
+    </div>
+
+    <div class="comment_write">
+        <textarea name="c_content" id="c_content"
+                  placeholder="댓글을 입력해주세요."
+                  data-no="${boards[0].b_no}"></textarea>
+        <div class="comment_write_button">
+            <button type="button" id="cancelBtn">취소</button>
+            <button type="button" id="submitBtn">등록</button>
+        </div>
     </div>
 
 </div>
