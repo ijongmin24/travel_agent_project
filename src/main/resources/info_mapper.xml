@@ -27,4 +27,8 @@
     <select id="viewRes" resultType="com.ta.travel_agent.info.InfoRestaurantDTO">
         select * from restaurant where rs_sa_no=1    <!--    수정할것 : where 수정    -->
     </select>
+    <!--  이벤트/축제 페이지  -->
+    <select id="viewEvent" resultType="com.ta.travel_agent.info.InfoEventDTO">
+        select * from event where e_ba_no=2    <!--    수정할것 : where 수정    -->
+    </select>
 </mapper>

@@ -82,4 +82,19 @@ public class InfoDAO {
             }
         }
     }
+    // 이벤트 조회
+    public static void viewEvent(HttpServletRequest request) {
+        SqlSession ss = null;
+        try {
+            ss = MyBatis.connect();
+            List<InfoEventDTO> viewEvent = ss.selectList("gyu.viewEvent");
+            request.setAttribute("viewEvent", viewEvent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ss != null) {
+                ss.close();
+            }
+        }
+    }
 }

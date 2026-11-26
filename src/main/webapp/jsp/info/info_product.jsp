@@ -3,7 +3,7 @@
 <html>
 <head>
   <!-- Info　Main CSS -->
-  <link rel="stylesheet" href="css/info/info.css">
+  <link rel="stylesheet" href="/css/info/info.css">
 
   <!-- Slick 기본 CSS -->
   <link rel="stylesheet"

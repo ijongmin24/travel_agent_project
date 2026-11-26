@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/area")
+@WebServlet("/info/area")
 public class InfoAreaC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -15,7 +15,7 @@ public class InfoAreaC extends HttpServlet {
         InfoDAO.viewSA(request);
 
         request.setAttribute("content", "jsp/info/info_area.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+        request.getRequestDispatcher("/index.jsp").forward(request,response);
     }
 
 }

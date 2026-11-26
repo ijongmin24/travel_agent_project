@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/product")
+@WebServlet("/info/product")
 public class InfoProductC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -16,7 +16,7 @@ public class InfoProductC extends HttpServlet {
         InfoDAO.viewSA(request);
 
         request.setAttribute("content", "jsp/info/info_product.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+        request.getRequestDispatcher("/index.jsp").forward(request,response);
     }
 
 }
