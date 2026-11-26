@@ -1,0 +1,63 @@
+.schedule-button-container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    &>div{
+        display: flex;
+        width: 100%;
+
+        &>button{
+            width: 100%;
+            height: 60px;
+        }
+    }
+
+}
+
+/* 슬라이더 부분 */
+.banner-slider-wrapper{
+    position: relative;
+    width: 100%;
+}
+
+.banner-slider {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+.recommend-slider-wrapper{
+    position: relative;
+    width: 100%;
+}
+
+.recommend-slider {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.custom-next,
+.custom-prev{
+    position: absolute;
+    top : 50%;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.custom-prev{
+    left: 0;
+}
+.custom-next{
+    right: 0;
+}
