@@ -29,7 +29,7 @@
 
             <section class="japan-map" aria-label="일본 도도부현 지도">
                 <div class="map-region hokkaido">
-                    <button class="prefecture" data-id="hokkaido">홋카이도</button>
+                    <button onclick="location.href='/info/main?r_no=1'" class="prefecture" data-id="hokkaido">홋카이도</button>
                 </div>
 
                 <div class="map-region tohoku">

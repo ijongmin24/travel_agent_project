@@ -42,8 +42,10 @@ public class InfoDAO {
         SqlSession ss = null;
         try {
             ss = MyBatis.connect();
-            List<InfoBADTO> viewBA = ss.selectList("gyu.viewBA");
+            String r_no = request.getParameter("r_no");
+            List<InfoBADTO> viewBA = ss.selectList("gyu.viewBA", r_no);
             request.setAttribute("viewBA", viewBA);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -8,13 +8,6 @@
     margin: 0 auto;
     margin-left: 195px;
 }
-/* 상단 지도 사진 */
-/*.main-top img {*/
-/*    width: 70%;*/
-/*    height: 50%;*/
-/*    margin-bottom: 20px;*/
-/*    margin-top: 20px;*/
-
 /* 상단 버튼 4개 */
 .main-right button {
     margin-bottom: 50px;
@@ -26,6 +19,12 @@
     font-size: 20px;            /* 글자 크기 */
     width: 100%;                 /* 메인버튼 길이 */
     height: 60px;               /* 메인버튼 높이 */
+    margin-top: 20px;
+}
+/* 버튼 디자인 */
+.main-right button:hover {
+    background-color: #eda37a;
+    cursor: pointer;
 }
 /* 메인 top 오른쪽 전체 */
 .main-right {
@@ -73,12 +72,17 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: bisque;
+    padding-top: 15px;
 }
 /* 식당추천 + 미니게시판 */
 .recommend-board {
     display: flex;
     justify-content: space-around;
     align-items: unset;
+    background-color: #b2c7ee;
+    border-radius: 200px;
+    margin-top: 20px;
 }
 /* 특산품 추천 사진 */
 .recommend img {
@@ -98,12 +102,50 @@
 }
 /* h1 글자 조정 */
 .recommend-board h1 {
-    margin-top: 60px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 /* 하단 슬라이더 위치조정 (여백) */
 #resH1 {
     margin-bottom: -75px;
+}
+/* 요즘 많이 찾는 지역 특산품은 뭘까? */
+.specialty-product-recommend h1 {
+    border: 0px solid;
+    border-radius: 20px;
+    background-color: #EDA37AFF;
+    text-align: center;
+    color: #ffffff;
+}
+/* 미니게시판 디자인 */
+.info-mini-board {
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+/* 미니게시판 타이틀 디자인 */
+#infoBoard-title {
+    background-color: #f0bc9f;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    margin-top: 0;
+}
+/* 미니게시판 게시물 디자인 */
+.info-mini-boards {
+    border: 1px solid #8a8a8a;
+    border-radius: 10px;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 5px;
 }
 
 /***********
@@ -112,7 +154,7 @@
 
 /* 대도시명 */
 .ba_name {
-    background-color: #bb76e3;
+    background-color: #EDA37AFF;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -149,28 +191,40 @@
 .product-info {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
     width: 100%;
     box-sizing: border-box;
+    padding: 0 20px;
 }
 /* 특산품 사진 박스 */
 .product-info-img {
-    border: 1px solid #0cdd2f;
+    border-radius: 10px;
     width: 100%;
-    height: 220px;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
 }
+/* 특산품 사진 설정 */
+.product-info-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
 /* 특산품 상세정보 박스 */
 .product-Details {
-    border: 1px solid #ff0101;
+    border: 0 solid;
+    background-color: #758abe;
+    border-radius: 10px;
     width: 100%;
     min-height: 150px;
     padding: 15px;
     line-height: 1.5;
     box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 50px;
 }
 
 /***********
@@ -214,8 +268,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 0 solid #0c3cdd;
-    background-color: #0c3cdd;
+    border: 0 solid;
+    background-color: #758abe;
     border-radius: 10px;
     color: #f6f6f8;
     height: 25px;

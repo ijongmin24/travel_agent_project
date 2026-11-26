@@ -47,3 +47,4 @@ insert into BIG_AREA values (BIG_AREA_SEQ.nextval,46,'가고시마','가고시�
 insert into BIG_AREA values (BIG_AREA_SEQ.nextval,47,'오키나와','오키나와','오키나와');
 
 select * from BIG_AREA;
+select * from REGION;

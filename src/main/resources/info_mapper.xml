@@ -13,7 +13,7 @@
     </select>
     <!--  관광지 특산품 페이지 (대도시명 표시)  -->
     <select id="viewBA" resultType="com.ta.travel_agent.info.InfoBADTO">
-        select * from big_area where ba_no=2    <!--    수정할것 : where 수정    -->
+        select * from big_area where ba_r_no=#{r_no}    <!--    수정할것 : where 수정    -->
     </select>
     <!--  관광지 특산품 페이지 (소도시명 표시)  -->
     <select id="viewSAProduct" resultType="com.ta.travel_agent.info.InfoSADTO">

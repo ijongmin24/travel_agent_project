@@ -1,3 +1,8 @@
-insert into EVENT values (EVENT_SEQ.nextval,2,1,'눈빛거리 축제','눈빛거리 축제','오타로 운하 산책로', '2/6 ~ 2/13','오타루 운하 산책로에 스노 캔들을 설치하고, 수면에는 유리 부표인 우키다마에 촛불을 넣어 띄우는 낭만적인 야경을 연출합니다. 또한 폐선된 옛 국철 데미야선 철길을 따라 시민들이 만든 스노 캔들 작품을 감상할 수 있습니다. 점등 시간은 대개 오후 5시부터 9시까지이며, 모든 야외 행사장 관람은 무료입니다.');
+-- [ 홋카이도 (2) ]
+
+-- 오타루 (1)
+insert into EVENT values (EVENT_SEQ.nextval,2,1,'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20130111_245%2Fschatje_1357834818982nEsLT_JPEG%2Fb_JSG_0557-6_%25BB%25E7%25BA%25BB.JPG&type=sc960_832','오타루 눈빛 거리 축제','오타루 운하 및 시내 일대', '매년 2월','눈과 얼음으로 만든 촛불 조형물로 도시를 밝히는 겨울 축제');
+insert into EVENT values (EVENT_SEQ.nextval,2,1,'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTEwMDNfMjU4%2FMDAxNTcwMDg1NDIzMTk4.k08fWzNvEIVBh7oWVosjwCVcQaoLzZQ3qg4OS9HQqPMg.bJorPFmH-ag-x6eUl57L5OU_AWmeUSXPdAGfs-oohDQg.JPEG.net_suji%2FDSC00562.JPG&type=sc960_832','오타루 우시오 축제','오타루 항구 및 시내 중심부', '매년 7월 말','시민들이 춤과 퍼레이드에 참여하는 대표 여름 축제');
+insert into EVENT values (EVENT_SEQ.nextval,2,1,'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzEyMDlfMTAx%2FMDAxNTEyODIyMjQ4Mzgz.i-dSWfSSSPmm1Hjjd8uM4ZhZQbcYn7m4TVATO1cddcIg.icqb6owmYBHA-WTOI_P6SYoxPfstsDTf8DOtgmnXO_Qg.JPEG.lrishsc%2F%25BF%25C0%25C5%25B8%25B7%25E7%25BF%25EE%25C7%25CF05.jpg&type=sc960_832','오타루 운하 일루미네이션','오타루 운하', '겨울철','운하 주변의 역사적인 건물과 수변을 조명으로 장식하는 행사');
 
 select * from EVENT;

@@ -30,7 +30,7 @@
     <div class="area-info">
             <%-- 가게 사진 --%>
         <div class="area-img">
-                ${res.rs_img}
+                <img src="${res.rs_img}">
         </div>
             <%-- 가게 이름 + 설명 --%>
         <div class="area-details">

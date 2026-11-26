@@ -30,7 +30,7 @@
     <div class="area-info">
             <%-- 이벤트/축제 사진 --%>
         <div class="area-img">
-                ${e.e_img}
+                <img src="${e.e_img}">
         </div>
             <%-- 이벤트/축제 이름 + 설명 --%>
         <div class="area-details">

@@ -67,10 +67,10 @@
         </div>
     </div>
     <%-- 게시판 --%>
-    <div>
-        <h1>현재 <span style="font-size:35px; color:red;">HOT</span>한 커뮤니케이션 💬</h1>
+    <div class="info-mini-board">
+        <h1 id="infoBoard-title">현재 <span style="font-size:35px; color:red;">HOT</span>한 커뮤니케이션 💬</h1>
         <c:forEach items="${boards}" var="b">
-            <div>
+            <div class="info-mini-boards">
             제목: ${b.b_title}
             날짜: ${b.b_created_date}
             유저: ${b.b_u_id}

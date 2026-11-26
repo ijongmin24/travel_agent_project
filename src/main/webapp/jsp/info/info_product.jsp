@@ -39,12 +39,12 @@
         <div class="product-info">
                 <%-- 제품 사진 박스 --%>
             <div class="product-info-img">
-                    ${p.p_img}
+                <img src="${p.p_img}">
             </div>
                 <%-- 제품 상세정보 박스 --%>
             <div class="product-Details">
-                <div>${p.p_name}</div>
-                <div>${p.p_price}</div>
+                <span style="font-size: 30px; color: white"><div>${p.p_name}</div></span>
+                <div>가격: ${p.p_price} 원</div>
                 <div>${p.p_info}</div>
             </div>
         </div>
