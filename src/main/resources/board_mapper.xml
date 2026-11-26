@@ -44,7 +44,7 @@
             AND b_cg_no = #{category}
         </if>
 
-        ORDER BY b_created_date DESC 
+        ORDER BY b_created_date DESC
     </select>
 
     <select id="detailBoard" resultType="com.ta.travel_agent.board.BoardDTO">
