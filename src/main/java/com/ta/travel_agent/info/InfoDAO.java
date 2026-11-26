@@ -42,8 +42,10 @@ public class InfoDAO {
         SqlSession ss = null;
         try {
             ss = MyBatis.connect();
-            List<InfoBADTO> viewBA = ss.selectList("gyu.viewBA");
+            String r_no = request.getParameter("r_no");
+            List<InfoBADTO> viewBA = ss.selectList("gyu.viewBA", r_no);
             request.setAttribute("viewBA", viewBA);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -74,6 +76,21 @@ public class InfoDAO {
             ss = MyBatis.connect();
             List<InfoRestaurantDTO> viewRes = ss.selectList("gyu.viewRes");
             request.setAttribute("viewRes", viewRes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ss != null) {
+                ss.close();
+            }
+        }
+    }
+    // 이벤트 조회
+    public static void viewEvent(HttpServletRequest request) {
+        SqlSession ss = null;
+        try {
+            ss = MyBatis.connect();
+            List<InfoEventDTO> viewEvent = ss.selectList("gyu.viewEvent");
+            request.setAttribute("viewEvent", viewEvent);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

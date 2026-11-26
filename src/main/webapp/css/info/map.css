@@ -1,0 +1,279 @@
+@charset "UTF-8";
+.map-warp {
+  position: absolute;
+  border: 0 solid;
+  background-color: #8ba9e1;
+  border-radius: 100px;
+  width: 1300px;
+  height: 600px;
+  margin-left: 160px;
+  margin-top: 10px;
+}
+
+:root {
+  --ken-width: 30%;
+  --ken-height: 5.5%;
+  --ken-gap: 5%;
+
+  --hokkaido-width: 180px;
+  --hokkaido-height: 155px;
+
+  --ken-width2: calc(var(--ken-width) * 2);
+  --ken-width3: calc(var(--ken-width) * 3);
+  --ken-width4: calc(var(--ken-width) * 4);
+
+  --ken-height2: calc(var(--ken-height) * 2);
+  --ken-height3: calc(var(--ken-height) * 3);
+  --ken-height4: calc(var(--ken-height) * 4);
+
+  --kyushu-left: 0px;
+  --shikoku-left: calc(var(--kyushu-left) + var(--ken-width3) + var(--ken-gap));
+  --chugoku-left: var(--shikoku-left);
+  --kinki-left: calc(var(--chugoku-left) + var(--ken-width3));
+  --chubu-left: calc(var(--kinki-left) + var(--ken-width2));
+  --kanto-left: calc(var(--chubu-left) + var(--ken-width3));
+  --tohoku-left: var(--kanto-left);
+  --hokkaido-left: var(--kanto-left);
+  --okinawa-left: var(--kyushu-left);
+
+  --hokkaido-top: 30px;
+  --tohoku-top: calc(
+    var(--hokkaido-top) + var(--hokkaido-height) + var(--ken-gap)
+  );
+  --kanto-top: calc(var(--tohoku-top) + var(--ken-height4));
+  --chubu-top: calc(var(--kanto-top) - var(--ken-height));
+  --kinki-top: calc(var(--kanto-top) + var(--ken-height));
+  --chugoku-top: var(--kinki-top);
+  --shikoku-top: calc(var(--chugoku-top) + var(--ken-height2) + var(--ken-gap));
+  --kyushu-top: var(--kinki-top);
+  --okinawa-top: calc(
+    var(--shikoku-top) + var(--ken-height) + var(--ken-gap) * 1.5
+  );
+}
+
+.map-layout {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(500px, 1.3fr);
+  align-items: start;
+}
+
+/* 지도 전체 */
+.japan-map {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  min-height: 570px;
+  margin: 0 auto;
+}
+
+/* 각 권역의 버튼을 CSS Grid로 배치 */
+.map-region {
+  position: absolute;
+  display: grid;
+  align-content: start;
+}
+
+.prefecture {
+  min-width: 0;
+  min-height: 43px;
+  padding: 5px 3px;
+  border: 2px solid #fff;
+  border-radius: 9px;
+  background: var(--region-color);
+  color: #111;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.prefecture:hover {
+  z-index: 2;
+  filter: brightness(0.97);
+  transform: translateY(-2px);
+}
+
+.prefecture:focus-visible {
+  outline: 3px solid #333;
+  outline-offset: 2px;
+}
+
+.prefecture.is-selected {
+  position: relative;
+  z-index: 3;
+  border: 3px solid #333;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
+}
+
+/* 권역별 색상 */
+.hokkaido {
+  --region-color: #e5bfdf;
+}
+.tohoku {
+  --region-color: #a8cce4;
+}
+.kanto {
+  --region-color: #f4c18d;
+}
+.chubu {
+  --region-color: #a8dcc7;
+}
+.kinki {
+  --region-color: #c9c39b;
+}
+.chugoku {
+  --region-color: #f3a0a4;
+}
+.shikoku {
+  --region-color: #f2e47b;
+}
+.kyushu {
+  --region-color: #b7b0dc;
+}
+.okinawa {
+  --region-color: #b7b0dc;
+}
+
+/* 홋카이도 */
+.hokkaido {
+  top: var(--hokkaido-top);
+  left: var(--hokkaido-left);
+  width: var(--hokkaido-width);
+  height: var(--hokkaido-height);
+}
+.hokkaido .prefecture {
+  height: var(--hokkaido-height);
+  border-radius: 10px 10px 10px 10px;
+}
+
+/* 도호쿠 */
+.tohoku {
+  top: var(--tohoku-top);
+  left: var(--tohoku-left);
+  width: var(--ken-width2);
+  grid-template-columns: repeat(2, 1fr);
+}
+.tohoku .prefecture {
+  min-height: var(--ken-height);
+}
+.tohoku button:first-child,
+.tohoku button:last-child {
+  grid-column: span 2;
+}
+
+/* 간토 */
+.kanto {
+  top: var(--kanto-top);
+  left: var(--kanto-left);
+  width: var(--ken-width2);
+  grid-template-columns: repeat(2, 1fr);
+}
+.kanto .prefecture {
+  min-height: var(--ken-height);
+}
+.kanto button:nth-child(6) {
+  grid-row: span 2;
+}
+
+/* 주부 */
+.chubu {
+  top: var(--chubu-top);
+  left: var(--chubu-left);
+  width: var(--ken-width3);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+.chubu .prefecture {
+  min-height: var(--ken-height);
+}
+.chubu button:nth-child(5),
+.chubu button:nth-child(6) {
+  grid-row: span 2;
+}
+.chubu button:nth-child(7) {
+  grid-column: 2/3;
+  grid-row: 4/5;
+}
+.chubu button:nth-child(8) {
+  grid-column: 3/4;
+  grid-row: 4/5;
+}
+.chubu button:nth-child(9) {
+  grid-column: 3/4;
+  grid-row: 5/6;
+}
+
+/* 긴키 */
+.kinki {
+  top: var(--kinki-top);
+  left: var(--kinki-left);
+  width: var(--ken-width3);
+  grid-template-columns: repeat(3, 1fr);
+}
+.kinki .prefecture {
+  min-height: var(--ken-height);
+}
+.kinki button:last-child {
+  grid-column: span 2;
+}
+
+/* 주고쿠 */
+.chugoku {
+  top: var(--chugoku-top);
+  left: var(--chugoku-left);
+  width: var(--ken-width3);
+  grid-template-columns: repeat(3, 1fr);
+}
+.chugoku .prefecture {
+  min-height: var(--ken-height);
+}
+.chugoku button:nth-child(1) {
+  grid-row: span 2;
+}
+
+/* 시코쿠 */
+.shikoku {
+  top: var(--shikoku-top);
+  left: var(--shikoku-left);
+  width: var(--ken-width2);
+  grid-template-columns: repeat(2, 1fr);
+}
+.shikoku .prefecture {
+  min-height: var(--ken-height);
+}
+
+/* 규슈 */
+.kyushu {
+  top: var(--kyushu-top);
+  left: var(--kyushu-left);
+  width: var(--ken-width3);
+  grid-template-columns: repeat(3, 1fr);
+}
+.kyushu .prefecture {
+  min-height: var(--ken-height);
+}
+.kyushu button:nth-child(6) {
+  grid-row: span 2;
+}
+.kyushu button:last-child {
+  grid-column: span 2;
+}
+
+/* 오키나와 */
+.okinawa {
+  top: var(--okinawa-top);
+  left: var(--kyushu-left);
+  width: var(--ken-width);
+  height: var(--ken-height);
+}
+
+/************************************/
+
+

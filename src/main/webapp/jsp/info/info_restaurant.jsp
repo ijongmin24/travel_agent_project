@@ -3,7 +3,7 @@
 <html>
 <head>
     <!-- Info　Main CSS -->
-    <link rel="stylesheet" href="css/info/info.css">
+    <link rel="stylesheet" href="/css/info/info.css">
 
     <!-- Slick 기본 CSS -->
     <link rel="stylesheet"
@@ -25,12 +25,12 @@
     </div>
 </c:forEach>
 
-<%-- 소도시명 --%>
+<%-- 가게정보 --%>
 <c:forEach items="${viewRes}" var="res">
     <div class="area-info">
             <%-- 가게 사진 --%>
         <div class="area-img">
-                ${res.rs_img}
+                <img src="${res.rs_img}">
         </div>
             <%-- 가게 이름 + 설명 --%>
         <div class="area-details">

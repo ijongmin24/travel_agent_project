@@ -14,7 +14,7 @@ public class InfoC extends HttpServlet {
         InfoDAO.viewHotBoard(request);
 
         request.setAttribute("content", "jsp/info/info_main.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+        request.getRequestDispatcher("/index.jsp").forward(request,response);
     }
 
 }

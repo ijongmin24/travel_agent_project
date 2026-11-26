@@ -58,4 +58,7 @@
     width: 25%;                 /* 메인버튼 길이 */
     height: 55px;               /* 메인버튼 높이 */
 }
-
+/* 버튼 디자인 */
+.main-button-warp button:hover {
+    background-color: #EDA37AFF;
+}

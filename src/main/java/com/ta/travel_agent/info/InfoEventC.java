@@ -7,14 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/event")
+@WebServlet("/info/event")
 public class InfoEventC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        InfoDAO.viewHotBoard(request);
+        InfoDAO.viewBA(request);
+        InfoDAO.viewSA(request);
+        InfoDAO.viewEvent(request);
 
         request.setAttribute("content", "jsp/info/info_event.jsp");
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+        request.getRequestDispatcher("/index.jsp").forward(request,response);
     }
 
 }

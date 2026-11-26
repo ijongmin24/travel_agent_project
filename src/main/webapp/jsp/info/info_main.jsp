@@ -3,7 +3,7 @@
 <html>
 <head>
     <!-- Info　Main CSS -->
-    <link rel="stylesheet" href="css/info/info.css">
+    <link rel="stylesheet" href="/css/info/info.css">
 
     <!-- Slick 기본 CSS -->
     <link rel="stylesheet"
@@ -53,7 +53,7 @@
 <div class="recommend-board">
     <%-- 식당 추천 --%>
     <div>
-        <h1>유행하는 요즘 맛집 🍚</h1>
+        <h1 id="resH1">유행하는 요즘 맛집 🍚</h1>
         <div class="single-item2">
             <button class="prev-btn2">❮</button>
 
@@ -67,10 +67,10 @@
         </div>
     </div>
     <%-- 게시판 --%>
-    <div>
-        <h1>현재 <span style="font-size:35px; color:red;">HOT</span>한 커뮤니케이션 💬</h1>
+    <div class="info-mini-board">
+        <h1 id="infoBoard-title">현재 <span style="font-size:35px; color:red;">HOT</span>한 커뮤니케이션 💬</h1>
         <c:forEach items="${boards}" var="b">
-            <div>
+            <div class="info-mini-boards">
             제목: ${b.b_title}
             날짜: ${b.b_created_date}
             유저: ${b.b_u_id}
