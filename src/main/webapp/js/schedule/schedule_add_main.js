@@ -1,10 +1,10 @@
 function handleViewPlace(dom) {
-    console.log(dom);
+    // detail db에서 가져오기
 
     const no = $(dom).data("no");
 
     $.ajax({
-        url: '/schedule/detail',
+        url: '/spot/detail',
         data: {
             spot_no: no
         }
@@ -19,13 +19,27 @@ function handleViewPlace(dom) {
     })
 }
 
-$("#map-container").html(`<iframe
-                width="600"
-                height="450"
-                style="border:0"
-                loading="lazy"
-                allowfullscreen
-                referrerpolicy="strict-origin-when-cross-origin"
-                src="https://www.google.com/maps/embed/v1/place?key=${CONFIG.GOOGLE_MAPS_API_KEY}&q=Space+Needle,Seattle+WA">
-        </iframe>
-`);
+function addSpot(){
+    console.log('data : ', data);
+
+    $.ajax({
+        url: '/spot/add',
+        method: 'POST',
+        data: {
+            spot_name : data.spot_name,
+            spot_address: data.spot_address,
+            spot_latitude : data.spot_latitude,
+            spot_longitude : data.spot_longitude,
+            spot_spotcode: data.spot_spotcode,
+            spot_phone : data.spot_phone,
+            spot_postal : data.spot_postal,
+            spot_category: data.spot_category,
+            spot_subcategory: data.spot_subcategory
+        }
+    }).done((res) => {
+        console.log(res);
+
+    }).fail((err) => {
+        console.error("error:", err);
+    })
+}

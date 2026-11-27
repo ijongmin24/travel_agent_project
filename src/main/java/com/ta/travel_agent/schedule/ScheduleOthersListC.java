@@ -12,7 +12,7 @@ public class ScheduleOthersListC extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
-        ScheduleDAO.getOhtersTravelList(req);
+        ScheduleDAO.getOthersTravelList(req);
 
         req.setAttribute("content", "/jsp/schedule/schedule_my_list.jsp");
 
