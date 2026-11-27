@@ -9,26 +9,37 @@
     </select>
     <!--  관광지 특산품 페이지  -->
     <select id="viewProducts" resultType="com.ta.travel_agent.info.InfoProductDTO">
-        select * from product       <!--    수정할것 : where 추가    -->
+        select *
+        from product
+        where p_sa_no = #{sa_no}
     </select>
     <!--  관광지 특산품 페이지 (대도시명 표시)  -->
     <select id="viewBA" resultType="com.ta.travel_agent.info.InfoBADTO">
-        select * from big_area where ba_r_no=#{r_no}    <!--    수정할것 : where 수정    -->
-    </select>
-    <!--  관광지 특산품 페이지 (소도시명 표시)  -->
-    <select id="viewSAProduct" resultType="com.ta.travel_agent.info.InfoSADTO">
-        select * from small_area where sa_no=1    <!--    수정할것 : where 수정    -->
+        select *
+        from big_area
+        where ba_r_no = #{r_no}
     </select>
     <!--  지역별 소도시 페이지 (소도시명 표시)  -->
     <select id="viewSA" resultType="com.ta.travel_agent.info.InfoSADTO">
-        select * from small_area where sa_ba_no=2    <!--    수정할것 : where 수정    -->
+        select *
+        from small_area, big_area
+        where sa_ba_no = ba_no
+        and ba_r_no = #{r_no}
     </select>
     <!--  레스토랑 페이지  -->
     <select id="viewRes" resultType="com.ta.travel_agent.info.InfoRestaurantDTO">
-        select * from restaurant where rs_sa_no=1    <!--    수정할것 : where 수정    -->
+        select *
+        from restaurant, big_area, small_area
+        where rs_ba_no = ba_no
+        and rs_sa_no = sa_no
+        and ba_r_no = #{r_no}
     </select>
     <!--  이벤트/축제 페이지  -->
     <select id="viewEvent" resultType="com.ta.travel_agent.info.InfoEventDTO">
-        select * from event where e_ba_no=2    <!--    수정할것 : where 수정    -->
+        select *
+        from event, big_area, small_area
+        where e_ba_no = ba_no
+        and e_sa_no = sa_no
+        and ba_r_no = #{r_no}
     </select>
 </mapper>

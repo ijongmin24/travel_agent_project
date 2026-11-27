@@ -19,31 +19,36 @@
 <jsp:include page="info_mainTOP.jsp"></jsp:include>
 
 <%-- 대도시명 --%>
-<c:forEach items="${viewBA}" var="ba">
-    <div class="ba_name">
-            ${ba.ba_name}
-    </div>
-</c:forEach>
+<div class="ba_name">
+    ${viewBA[0].ba_name}
+</div>
 
-<%-- 가게정보 --%>
-<c:forEach items="${viewRes}" var="res">
-    <div class="area-info">
-            <%-- 가게 사진 --%>
-        <div class="area-img">
-                <img src="${res.rs_img}">
-        </div>
-            <%-- 가게 이름 + 설명 --%>
-        <div class="area-details">
-            <div class="area-name">${res.rs_name}</div>
-            <div class="res-description">
-                <div>가게위치: ${res.rs_place}</div>
-                <div>영업시간: ${res.rs_time}</div>
-                <div>가게전화: ${res.rs_call}</div>
-                <div>기타정보: ${res.rs_info}</div>
+<%-- 가게 정보 --%>
+<div>
+    <c:forEach items="${viewRes}" var="sa">
+        <div class="sa_names">${sa.sa_name}</div>
+
+        <c:forEach items="${sa.restaurants}" var="r">
+            <div class="area-info">
+                    <%-- 가게 사진 --%>
+                <div class="area-img">
+                    <img src="${r.rs_img}">
+                </div>
+                    <%-- 가게 이름 + 설명 --%>
+                <div class="area-details">
+                    <div class="area-name">${r.rs_name}</div>
+                    <div class="res-description">
+                        <div>가게위치: ${r.rs_place}</div>
+                        <div>영업시간: ${r.rs_time}</div>
+                        <div>가게전화: ${r.rs_call}</div>
+                        <div>기타정보: ${r.rs_info}</div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</c:forEach>
+
+        </c:forEach>
+    </c:forEach>
+</div>
 
 
 </body>

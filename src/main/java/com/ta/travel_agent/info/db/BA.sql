@@ -48,3 +48,7 @@ insert into BIG_AREA values (BIG_AREA_SEQ.nextval,47,'오키나와','오키나�
 
 select * from BIG_AREA;
 select * from REGION;
+
+update BIG_AREA
+set BA_IMG = 'https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2FMjAyMDAzMDZfMjUx%2FMDAxNTgzNDI1MDQ1NjI0.zADmgCbz0fWa6PDba-iFJMPBylcvgp9NKfhcvHRYuaIg.u0g81G_MebwyaXWmih3j7ObVd5sNlvlhrvwcNozwy30g.JPEG%2F20170123_105947.jpg&type=sc960_832'
+where ba_r_no=1;

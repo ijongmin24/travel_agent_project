@@ -19,11 +19,9 @@
 <jsp:include page="info_mainTOP.jsp"></jsp:include>
 
 <%-- 대도시명 --%>
-<c:forEach items="${viewBA}" var="ba">
-    <div class="ba_name">
-            ${ba.ba_name}
-    </div>
-</c:forEach>
+<div class="ba_name">
+    ${viewBA[0].ba_name}
+</div>
 
 <%-- 소도시명 --%>
 <c:forEach items="${viewSA}" var="sa">

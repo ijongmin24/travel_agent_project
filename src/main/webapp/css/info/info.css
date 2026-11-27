@@ -169,7 +169,7 @@
     margin: 70px auto 50px;
 }
 /* 소도시명 */
-.sa_name {
+.sa_names {
     display: block;
     font-size: 28px;
     border: 1px solid #0c3cdd;
@@ -179,13 +179,6 @@
     padding: 10px;
     margin-bottom: 30px;
     margin-top: 30px;
-}
-/* 특산품 전체 영역 */
-.product-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    width: 100%;
 }
 /* 제품 하나의 영역 */
 .product-info {
@@ -294,4 +287,30 @@
     padding: 10px;
     line-height: 2;
     margin-top: 2px;
+}
+
+/*************
+ 관광지 BA 페이지
+**************/
+
+/* 대표 사진 설정 */
+.ba_img img{
+    width: 80%;
+    height: 800px;
+    display: block;
+    margin: 0 auto;
+}
+/* BA 설명란 */
+.ba_info {
+    border-radius: 10px;
+    border: 1px solid;
+    text-align: center;
+    letter-spacing: 2.5px;
+    line-height: 30px;
+    width: 80%;
+    height: 100px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
 }
