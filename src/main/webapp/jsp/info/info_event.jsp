@@ -22,7 +22,7 @@
 <div class="ba_name">
     ${viewBA[0].ba_name}
 </div>
-보
+
 
 <%-- 이벤트/축제 정보 --%>
 <div>
