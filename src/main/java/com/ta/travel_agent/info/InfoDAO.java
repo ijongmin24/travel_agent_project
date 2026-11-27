@@ -12,7 +12,8 @@ public class InfoDAO {
         SqlSession ss = null;
         try {
             ss = MyBatis.connect();
-            List<BoardDTO> boards = ss.selectList("gyu.viewHotBoard");
+            String r_no = request.getParameter("r_no");
+            List<BoardDTO> boards = ss.selectList("gyu.viewHotBoard",r_no);
             request.setAttribute("boards", boards);
         } catch (Exception e) {
             e.printStackTrace();
@@ -27,7 +28,8 @@ public class InfoDAO {
         SqlSession ss = null;
         try {
             ss = MyBatis.connect();
-            List<InfoProductDTO> products = ss.selectList("gyu.viewProducts");
+            String r_no = request.getParameter("r_no");
+            List<InfoProductDTO> products = ss.selectList("gyu.viewProducts",r_no);
             request.setAttribute("products", products);
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,7 +61,14 @@ public class InfoDAO {
         SqlSession ss = null;
         try {
             ss = MyBatis.connect();
-            List<InfoSADTO> viewSA = ss.selectList("gyu.viewSA");
+            String r_no = request.getParameter("r_no");
+            List<InfoSADTO> viewSA = ss.selectList("gyu.viewSA", r_no);
+
+            for(InfoSADTO infoSADTO : viewSA){
+                int sa_no = infoSADTO.getSa_no();
+                List<InfoProductDTO> products = ss.selectList("gyu.viewProducts",sa_no);
+                infoSADTO.setProducts(products);
+            }
             request.setAttribute("viewSA", viewSA);
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,8 +83,14 @@ public class InfoDAO {
         SqlSession ss = null;
         try {
             ss = MyBatis.connect();
-            List<InfoRestaurantDTO> viewRes = ss.selectList("gyu.viewRes");
-            request.setAttribute("viewRes", viewRes);
+            String r_no = request.getParameter("r_no");
+            List<InfoSADTO> sas = ss.selectList("gyu.viewSA", r_no);
+            for(InfoSADTO sa : sas){
+                int sa_no = sa.getSa_no();
+                List<InfoRestaurantDTO> restaurants = ss.selectList("gyu.viewRes",sa_no);
+                sa.setRestaurants(restaurants);
+            }
+            request.setAttribute("viewRes",sas);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -89,8 +104,14 @@ public class InfoDAO {
         SqlSession ss = null;
         try {
             ss = MyBatis.connect();
-            List<InfoEventDTO> viewEvent = ss.selectList("gyu.viewEvent");
-            request.setAttribute("viewEvent", viewEvent);
+            String r_no = request.getParameter("r_no");
+            List<InfoSADTO> sas = ss.selectList("gyu.viewSA", r_no);
+            for(InfoSADTO sa : sas){
+                int sa_no = sa.getSa_no();
+                List<InfoEventDTO> events = ss.selectList("gyu.viewEvent",sa_no);
+                sa.setEvents(events);
+            }
+            request.setAttribute("viewEvent",sas);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

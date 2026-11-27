@@ -13,5 +13,13 @@
       ${viewBA[0].ba_name}
   </div>
 
+<div class="ba_img">
+    <img src="${viewBA[0].ba_img}">
+</div>
+
+<div class="ba_info">
+    ${viewBA[0].ba_info}
+</div>
+
 </body>
 </html>
