@@ -2,11 +2,13 @@ package com.ta.travel_agent.board;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.oreilly.servlet.multipart.*;
 import com.ta.travel_agent.MyBatis;
 import org.apache.ibatis.session.SqlSession;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -25,9 +27,12 @@ public class BoardDAO {
 
             String place = request.getParameter("place");
             String category = request.getParameter("category");
+            String keyword = request.getParameter("keyword");
+
             Map<String, String> params = new HashMap<>();
             params.put("place", place);
             params.put("category", category);
+            params.put("keyword", keyword);
             List<BoardDTO> boards = ss.selectList("jmqqq.getBoard", params);
 
             request.setAttribute("regions",regions);
@@ -40,47 +45,126 @@ public class BoardDAO {
         }
     }
 
-    public static void add(HttpServletRequest request) {
+    public static int add(HttpServletRequest request) {
         SqlSession ss = null;
+
+        List<File> savedFiles = new ArrayList<>();
 
         try {
             ss = MyBatis.connect();
             request.setCharacterEncoding("UTF-8");
 
-            // 값 받기
-            String b_no = request.getParameter("b_no");
-            String b_title = request.getParameter("b_title");
-            String b_content = request.getParameter("b_content");
-            String b_view = "0";
-            SimpleDateFormat b_created_date = new SimpleDateFormat("yyyy-MM-dd");
-            SimpleDateFormat b_updated_date = new SimpleDateFormat("yyyy-MM-dd");
-            String b_status = "Y";
-            String b_u_id = "bo";
-            String b_region_no = request.getParameter("b_region");
-            String b_cg_no = request.getParameter("b_category");
-
-            Map<String, String> params = new HashMap<>();
-            params.put("b_no", b_no);
-            params.put("b_title", b_title);
-            params.put("b_content", b_content);
-            params.put("b_view", b_view);
-            params.put("b_created_date", b_created_date.format(new Date()));
-            params.put("b_updated_date", b_updated_date.format(new Date()));
-            params.put("b_status", b_status);
-            params.put("b_u_id", b_u_id);
-            params.put("b_region_no", b_region_no);
-            params.put("b_cg_no", b_cg_no);
-
-            if (ss.insert("jmqqq.addBoard", params) == 1) {
-                System.out.println("add success");
-                ss.commit(); // batis가 커밋 수동으로 돌려놓음.
+            String saveRealPath = request.getServletContext().getRealPath("img/uploadImg");
+            if (saveRealPath == null) {
+                System.out.println("이미지 저장 경로를 찾을 수 없습니다.");
+            }
+            File saveDir = new File(saveRealPath);
+            if (!saveDir.exists() && !saveDir.mkdirs()) {
+                throw new Exception("이미지 저장 폴더 생성 실패");
             }
 
+            Map<String, String> params = new HashMap<>();
+
+            List<BoardImgDTO> images = new ArrayList<>();
+
+            MultipartParser mr = new MultipartParser(request,
+                    30 * 1024 * 1024,
+                    true,
+                    true,
+                    "utf-8");
+
+            Part part;
+
+            int sequence = 1;
+
+            while ((part = mr.readNextPart()) != null) {
+                if (part.isParam()) {
+
+                    ParamPart param =  (ParamPart) part;
+
+                    params.put(
+                            param.getName(),
+                            param.getStringValue()
+                    );
+                } else if (part.isFile()) {
+
+                    FilePart filePart = (FilePart) part;
+
+                    if (!"b_file".equals(part.getName())) {
+                        continue;
+                    }
+                    if (filePart.getFileName() == null) {
+                        continue;
+                    }
+                    String contentType = filePart.getContentType();
+
+                    if (contentType == null || !contentType.startsWith("image/")) {
+                        throw new Exception("이미지 파일만 업로드 할 수 있습니다.");
+                    }
+                    filePart.setRenamePolicy(
+                            new DefaultFileRenamePolicy()
+                    );
+                    filePart.writeTo(saveDir);
+
+                    String fileName = filePart.getFileName();
+
+                    savedFiles.add(new File(saveDir, fileName));
+
+                    BoardImgDTO img = new BoardImgDTO();
+
+                    img.setI_url("/img/uploadImg/" + fileName);
+                    img.setI_sequence(sequence++);
+
+                    images.add(img);
+                }
+            }
+
+            int b_no = ss.selectOne("jmqqq.getBoardNo");
+
+            params.put("b_no", String.valueOf(b_no));
+
+            params.put("b_view", "0");
+            params.put("b_status", "Y");
+            params.put("b_u_id", "bo");
+            params.put("b_region_no", params.get("b_region"));
+            params.put("b_cg_no", params.get("b_category"));
+
+            int result = ss.insert("jmqqq.addBoard", params);
+
+            if (result == 1) {
+                for (BoardImgDTO img : images) {
+                    img.setI_b_no(b_no);
+
+                    ss.insert("jmqqq.addImage", img);
+                }
+
+                ss.commit();
+
+                System.out.println("게시글 등록 성공");
+                System.out.println("이미지 개수 : " + images.size());
+
+                return b_no;
+            } else {
+                throw new Exception("게시글 등록 실패");
+            }
         } catch (Exception e) {
             e.printStackTrace();
+
+            if (ss != null) {
+                ss.rollback();
+            }
+
+            for (File file : savedFiles) {
+                if (file.exists()) {
+                    file.delete();
+                }
+            }
         } finally {
+            if (ss != null) {
             ss.close();
+            }
         }
+        return 0;
     }
 
     public static void detail(HttpServletRequest request) {
@@ -94,6 +178,10 @@ public class BoardDAO {
             List<BoardDTO> boards = ss.selectList("jmqqq.detailBoard", b_no);
             request.setAttribute("boards",boards);
 
+            List<BoardImgDTO> images = ss.selectList("jmqqq.getImages", b_no);
+
+
+            request.setAttribute("images",images);
 
             List<CommentsDTO> comments = ss.selectList("jmqqq.selectComment", b_no);
 
@@ -164,6 +252,61 @@ public class BoardDAO {
         } finally {
             ss.close();
         }
+    }
+
+    public static void update(HttpServletRequest request) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+
+            int b_no = Integer.parseInt(request.getParameter("b_no"));
+
+            ss.update("jmqqq.updateBoard", b_no);
+
+            ss.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ss != null) {
+                ss.close();
+            }
+        }
+    }
+
+    public static int updateComment(HttpServletRequest request) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+
+            int c_no = Integer.parseInt(request.getParameter("c_no"));
+
+            int result = ss.update("jmqqq.updateComment", c_no);
+
+            ss.commit();
+
+            int b_no =  Integer.parseInt(request.getParameter("b_no"));
+            List<CommentsDTO> comments = ss.selectList("jmqqq.selectComment", b_no);
+            ArrayList<String> comments_json = new ArrayList<>();
+            for(CommentsDTO comment : comments){
+                comments_json.add(comment.toJson());
+            }
+            JsonObject obj = new JsonObject();
+            JsonParser jsonParser = new JsonParser();
+            obj.add("comments", jsonParser.parse(comments_json.toString()) );
+
+            return result;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ss != null) {
+                ss.close();
+            }
+        }
+        return 0;
     }
 }
 

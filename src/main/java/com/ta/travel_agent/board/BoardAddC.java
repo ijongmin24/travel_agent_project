@@ -1,6 +1,7 @@
 package com.ta.travel_agent.board;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/board/add")
+@MultipartConfig
 public class BoardAddC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -20,9 +22,9 @@ public class BoardAddC extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        BoardDAO.add(request);
+        int b_no = BoardDAO.add(request);
 
-        response.sendRedirect("/board");
+        response.sendRedirect("/board/detail?b_no=" + b_no);
 
     }
 }

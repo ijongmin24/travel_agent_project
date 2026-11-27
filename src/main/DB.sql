@@ -411,19 +411,9 @@ values (comments_seq.nextval,
         sysdate, 'N', 21, null,
         'bo');
 
-select *
-from COMMENTS;
+select * from COMMENTS;
 
-select *
-from COMMENTS;
-
-SELECT
-    b_no,
-    b_title,
-    b_region_no,
-    b_cg_no
-FROM board
-ORDER BY b_no DESC;
+SELECT * from board;
 
 SELECT
     c_no,
@@ -434,3 +424,10 @@ SELECT
 FROM comments, board
 WHERE c_b_no = b_no
 ORDER BY c_no;
+
+select * from image;
+
+
+update comments
+set c_status = 'Y'
+where c_status = 'N';

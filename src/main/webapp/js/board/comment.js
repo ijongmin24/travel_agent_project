@@ -215,7 +215,51 @@ $(function () {
             alert("답글 등록에 실패했습니다.");
         });
 
+
     });
 
+// 댓글 및 답글 삭제
+    $(document).on("click", ".deleteCommentBtn", function () {
 
+        if (!confirm("정말 삭제하시겠습니까?")) {
+            return;
+        }
+
+        let no = $(this).data("no");
+        let b_no = $(this).data("b_no")
+        let button = $(this);
+
+        $.ajax({
+            url: "/board/update",
+            method: "POST",
+            data: {
+                b_no: b_no,
+                c_no: no
+            }
+        }).done(function (result) {
+
+            if (result === "success") {
+
+                // 삭제 버튼이 답글에 있는 경우
+                let replyItem = button.closest(".reply_item");
+
+                if (replyItem.length > 0) {
+                    replyItem.remove();
+                } else {
+                    // 일반 댓글인 경우
+                    let commentItem = button.closest(".comment_item");
+
+                    commentItem.remove();
+                    commentItem.find(".deleteCommentBtn, .replyBtn").remove();
+                }
+
+            } else {
+                alert("댓글 삭제에 실패했습니다.");
+            }
+
+        }).fail(function () {
+            alert("삭제 요청 중 오류가 발생했습니다.");
+        });
+
+    });
 });

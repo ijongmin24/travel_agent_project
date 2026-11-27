@@ -12,8 +12,13 @@
         select * from category
     </select>
 
+    <!-- 게시글 번호 생성 -->
+    <select id="getBoardNo" resultType="int">
+        SELECT board_seq.nextval FROM dual
+    </select>
+
     <insert id="addBoard" >
-        insert into board values (board_seq.nextval, #{b_title}, #{b_content}, #{b_view},
+        insert into board values (#{b_no}, #{b_title}, #{b_content}, #{b_view},
         sysdate, sysdate, #{b_status}, #{b_u_id},
         #{b_region_no}, #{b_cg_no})
     </insert>
@@ -35,6 +40,7 @@
         where B_REGION_NO = r_no
         and board.b_no = board_like.B_NO(+)
         and board.b_no = board_scrap.B_NO(+)
+        and board.b_status = 'Y'
 
         <if test="place != null and place != ''">
             AND b_region_no = #{place}
@@ -42,6 +48,10 @@
 
         <if test="category != null and category != ''">
             AND b_cg_no = #{category}
+        </if>
+
+        <if test="keyword != null and keyword != ''">
+            AND LOWER(board.b_title) LIKE '%' || LOWER(#{keyword}) || '%'
         </if>
 
         ORDER BY b_created_date DESC
@@ -52,13 +62,14 @@
         from board, region, category
         where b_region_no = r_no and
               b_cg_no = cg_no and
-              b_no = #{b_no}
+              b_no = #{b_no} and
+              b_status = 'Y'
     </select>
 
     <insert id="addComment" >
         insert into COMMENTS
         values (comments_seq.nextval,#{c_content}, sysdate,
-        sysdate, 'N', #{c_b_no}, #{c_parent_comment, jdbcType=NUMERIC},
+        sysdate, 'Y', #{c_b_no}, #{c_parent_comment, jdbcType=NUMERIC},
         #{c_u_id})
     </insert>
 
@@ -67,13 +78,14 @@
         from comments
         where c_b_no = #{value}
         and c_parent_comment is null
+        and c_status = 'Y'
         ORDER BY c_created_date DESC, c_no DESC
     </select>
 
     <insert id="addReply">
         insert into COMMENTS
         values (comments_seq.nextval,#{c_content}, sysdate,
-        sysdate, 'N', #{c_b_no}, #{c_parent_comment},
+        sysdate, 'Y', #{c_b_no}, #{c_parent_comment},
         #{c_u_id})
     </insert>
 
@@ -81,8 +93,34 @@
         select *
         from comments
         where c_parent_comment = #{value}
+        and c_status = 'Y'
         order by c_created_date ASC
     </select>
+
+    <insert id="addImage">
+        insert into image
+        values (image_seq.nextval, #{i_b_no},
+        #{i_url}, #{i_sequence})
+    </insert>
+
+    <select id="getImages" resultType="com.ta.travel_agent.board.BoardImgDTO">
+        SELECT *
+        FROM image
+        WHERE i_b_no = #{b_no}
+        ORDER BY i_sequence
+    </select>
+
+    <update id="updateBoard">
+        update board
+        set b_status = 'N'
+        WHERE b_no = #{b_no}
+    </update>
+
+    <update id="updateComment">
+        update comments
+        set c_status = 'N'
+        where c_no = #{c_no}
+    </update>
 
 </mapper>
 
