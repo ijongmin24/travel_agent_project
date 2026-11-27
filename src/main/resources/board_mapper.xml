@@ -49,6 +49,10 @@
             AND b_cg_no = #{category}
         </if>
 
+        <if test="keyword != null and keyword != ''">
+            AND LOWER(board.b_title) LIKE '%' || LOWER(#{keyword}) || '%'
+        </if>
+
         ORDER BY b_created_date DESC
     </select>
 
@@ -102,6 +106,10 @@
         ORDER BY i_sequence
     </select>
 
+    <delete id="deleteBoard">
+        delete board
+        where b_no = #{b_no}
+    </delete>
 
 </mapper>
 

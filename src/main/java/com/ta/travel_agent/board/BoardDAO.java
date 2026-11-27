@@ -28,9 +28,12 @@ public class BoardDAO {
 
             String place = request.getParameter("place");
             String category = request.getParameter("category");
+            String keyword = request.getParameter("keyword");
+
             Map<String, String> params = new HashMap<>();
             params.put("place", place);
             params.put("category", category);
+            params.put("keyword", keyword);
             List<BoardDTO> boards = ss.selectList("jmqqq.getBoard", params);
 
             request.setAttribute("regions",regions);
@@ -246,6 +249,27 @@ public class BoardDAO {
             throw new RuntimeException(e);
         } finally {
             ss.close();
+        }
+    }
+
+    public static void delete(HttpServletRequest request) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+
+            int b_no = Integer.valueOf(request.getParameter("b_no"));
+
+            ss.delete("jmqqq.deleteBoard", b_no);
+
+            ss.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ss != null) {
+                ss.close();
+            }
         }
     }
 }

@@ -7,7 +7,7 @@
 <body>
 
 <div class="header">
-    <div class="main-logo">
+    <div class="main-logo" onclick='location.href="/main"'>
         <img src="/img/main/main.png">
     </div>
 

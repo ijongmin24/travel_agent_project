@@ -420,7 +420,6 @@ from COMMENTS;
 SELECT * from
              board;
 
-
 SELECT
     c_no,
     c_content,

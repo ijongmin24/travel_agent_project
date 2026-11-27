@@ -67,12 +67,9 @@ select:focus {
 input[type="file"] {
     width: 100%;
     padding: 12px;
-    margin-top: 5px;
-    border: 1px dashed #cbd3df;
-    border-radius: 6px;
     background-color: #f8f9fb;
     box-sizing: border-box;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
 }
 
@@ -106,8 +103,8 @@ form .container > div:last-child {
 
 /* 완료 버튼 */
 form button {
-    min-width: 110px;
-    height: 44px;
+    min-width: 35px;
+    height: 35px;
     padding: 0 25px;
     border: none;
     border-radius: 6px;
@@ -137,4 +134,53 @@ form button:hover {
     textarea {
         min-height: 220px;
     }
+}
+
+.file-upload-box {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: #fafafa;
+}
+
+/* 파일 선택 영역 */
+#b_file {
+    width: 100%;
+    font-size: 12px;
+}
+
+/* 선택한 파일 목록 */
+#preview {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* 파일 목록 하나 */
+#preview > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px;
+    border-top: 1px solid #eee;
+    font-size: 12px;
+    color: #333;
+}
+
+/* 삭제 버튼 */
+#preview button {
+    border: none;
+    background: #eee;
+    color: #555;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#preview button:hover {
+    background: #dc3545;
+    color: white;
 }

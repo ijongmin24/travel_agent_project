@@ -1,59 +1,59 @@
-    let selectedFiles = [];
 
-    $("#b_file").change(function () {
+let selectedFiles = [];
 
-    let files = Array.from(this.files);
+$(function () {
 
-    selectedFiles = selectedFiles.concat(files);
+    const fileInput = document.getElementById("b_file");
+    const uploadFiles = document.getElementById("uploadFiles");
+    const preview = document.getElementById("preview");
 
-    let dataTransfer = new DataTransfer();
+    // 파일 선택
+    fileInput.addEventListener("change", function () {
 
-    selectedFiles.forEach(file => {
-    dataTransfer.items.add(file);
-});
+        // 새로 선택한 파일을 기존 목록에 추가
+        let newFiles = Array.from(this.files);
+        selectedFiles.push(...newFiles);
 
-    $("#uploadFiles")[0].files = dataTransfer.files;
+        // 실제 전송 파일과 미리보기 갱신
+        updateFiles();
 
-    $("#preview").empty();
+        // 같은 파일도 다시 선택할 수 있도록 초기화
+        this.value = "";
+    });
 
-    selectedFiles.forEach((file, index) => {
-    $("#preview").append(`
-                <div>
-                    ${file.name}
-                    <button type="button" class="deleteFile" data-index="${index}">
-                        삭제
-                    </button>
-                </div>
-            `);
-});
+    // 파일 목록 갱신
+    function updateFiles() {
 
-    this.value = "";
-});
+        let dataTransfer = new DataTransfer();
 
-    $(document).on("click", ".deleteFile", function () {
+        selectedFiles.forEach(file => {
+            dataTransfer.items.add(file);
+        });
 
-    let index = $(this).data("index");
+        // 서버로 전송할 파일 목록 설정
+        uploadFiles.files = dataTransfer.files;
 
-    selectedFiles.splice(index, 1);
+        // 미리보기 초기화
+        preview.innerHTML = "";
 
-    let dataTransfer = new DataTransfer();
+        selectedFiles.forEach((file, index) => {
 
-    selectedFiles.forEach(file => {
-    dataTransfer.items.add(file);
-});
+            let div = document.createElement("div");
+            div.textContent = file.name + " ";
 
-    $("#uploadFiles")[0].files = dataTransfer.files;
+            let button = document.createElement("button");
+            button.type = "button";
+            button.textContent = "x";
 
-    $("#preview").empty();
+            // 개별 파일 삭제
+            button.addEventListener("click", function () {
+                selectedFiles.splice(index, 1);
+                updateFiles();
+            });
 
-    selectedFiles.forEach((file, index) => {
-    $("#preview").append(`
-                <div>
-                    ${file.name}
-                    <button type="button" class="deleteFile" data-index="${index}">
-                        삭제
-                    </button>
-                </div>
-            `);
-});
+            div.appendChild(button);
+            preview.appendChild(div);
+        });
+    }
+
 });

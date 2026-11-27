@@ -33,10 +33,9 @@
                 </c:forEach>
             </select>
         </div>
-        <div>
-            <input type="file" name="b_file" multiple accept="image/*">
+        <div class="file-upload-box">
+            <input type="file" id="b_file" multiple accept="image/*">
             <div id="preview"></div>
-
             <input type="file" name="b_file" id="uploadFiles" multiple hidden>
         </div>
         <div>
