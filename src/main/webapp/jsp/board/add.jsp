@@ -5,9 +5,11 @@
     <title>Title</title>
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/add.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/board/addFile.js"></script>
 </head>
 <body>
-<form action="/board/add" method="post">
+<form action="/board/add" method="post" enctype="multipart/form-data">
     <div class="container">
         <div>
             제목
@@ -32,7 +34,10 @@
             </select>
         </div>
         <div>
-            <input type="file" name="b_file">
+            <input type="file" name="b_file" multiple accept="image/*">
+            <div id="preview"></div>
+
+            <input type="file" name="b_file" id="uploadFiles" multiple hidden>
         </div>
         <div>
             <textarea name="b_content" cols="30" rows="10"></textarea>

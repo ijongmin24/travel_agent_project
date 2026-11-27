@@ -12,8 +12,13 @@
         select * from category
     </select>
 
+    <!-- 게시글 번호 생성 -->
+    <select id="getBoardNo" resultType="int">
+        SELECT board_seq.nextval FROM dual
+    </select>
+
     <insert id="addBoard" >
-        insert into board values (board_seq.nextval, #{b_title}, #{b_content}, #{b_view},
+        insert into board values (#{b_no}, #{b_title}, #{b_content}, #{b_view},
         sysdate, sysdate, #{b_status}, #{b_u_id},
         #{b_region_no}, #{b_cg_no})
     </insert>
@@ -83,6 +88,20 @@
         where c_parent_comment = #{value}
         order by c_created_date ASC
     </select>
+
+    <insert id="addImage">
+        insert into image
+        values (image_seq.nextval, #{i_b_no},
+        #{i_url}, #{i_sequence})
+    </insert>
+
+    <select id="getImages" resultType="com.ta.travel_agent.board.BoardImgDTO">
+        SELECT *
+        FROM image
+        WHERE i_b_no = #{b_no}
+        ORDER BY i_sequence
+    </select>
+
 
 </mapper>
 
