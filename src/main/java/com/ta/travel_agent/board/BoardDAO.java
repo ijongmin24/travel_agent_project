@@ -46,7 +46,7 @@ public class BoardDAO {
         }
     }
 
-    public static void add(HttpServletRequest request) {
+    public static int add(HttpServletRequest request) {
         SqlSession ss = null;
 
         List<File> savedFiles = new ArrayList<>();
@@ -143,6 +143,8 @@ public class BoardDAO {
 
                 System.out.println("게시글 등록 성공");
                 System.out.println("이미지 개수 : " + images.size());
+
+                return b_no;
             } else {
                 throw new Exception("게시글 등록 실패");
             }
@@ -163,6 +165,7 @@ public class BoardDAO {
             ss.close();
             }
         }
+        return 0;
     }
 
     public static void detail(HttpServletRequest request) {

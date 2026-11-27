@@ -22,9 +22,9 @@ public class BoardAddC extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
 
-        BoardDAO.add(request);
+        int b_no = BoardDAO.add(request);
 
-        response.sendRedirect("/board");
+        response.sendRedirect("/board/detail?b_no=" + b_no);
 
     }
 }
