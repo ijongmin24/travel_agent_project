@@ -8,7 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SpotDAO {
@@ -54,10 +56,13 @@ public class SpotDAO {
             params.put("spot_category", req.getParameter("spot_category"));
             params.put("spot_subcategory", req.getParameter("spot_subcategory"));
 
-            int rows = ss.insert("bo.addSpot", params);
-            if( rows == 1 ) {
-                System.out.println("spot added successfully");
-                ss.commit();
+            List<SpotDTO> spot = ss.selectOne("bo.isSpot", req.getParameter("spot_spotcode"));
+            if (spot.isEmpty()) {
+                int rows = ss.insert("bo.addSpot", params);
+                if( rows == 1 ) {
+                    System.out.println("spot added successfully");
+                    ss.commit();
+                }
             }
 
             JsonObject obj = new JsonObject();
@@ -71,5 +76,33 @@ public class SpotDAO {
         }
         return null;
 
+    }
+
+    public static JsonObject getSpots(HttpServletRequest req, HttpServletResponse res) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+
+            String t_no = req.getParameter("t_no");
+
+            List<SpotDTO> spots = ss.selectList("bo.getSpots", t_no);
+
+            System.out.println(spots);
+            JsonObject obj = new JsonObject();
+            JsonParser parser = new JsonParser();
+            ArrayList<String> spots_json = new ArrayList<>();
+            for (SpotDTO spotDTO : spots) {
+                spots_json.add(spotDTO.toJSON());
+            }
+            obj.add("spots", parser.parse(spots_json.toString()));
+
+            return obj;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            ss.close();
+        }
+        return null;
     }
 }

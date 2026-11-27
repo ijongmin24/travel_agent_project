@@ -39,11 +39,21 @@
         select * from spot where spot_no = #{spot_no}
     </select>
 
-<!--    <select id=""-->
+    <select id="isSpot" resultType="com.ta.travel_agent.schedule.spot.SpotDTO">
+        select * from spot where spot_spotcode = #{spotcode}
+    </select>
 
     <insert id="addSpot">
         insert into spot values(spot_seq.nextval, #{spot_name}, #{spot_address}, #{spot_latitude}, #{spot_longitude}, #{spot_spotcode}, #{spot_phone}, #{spot_postal}, #{spot_category}, #{spot_subcategory})
     </insert>
+
+    <select id="getSpots" resultType="com.ta.travel_agent.schedule.spot.SpotDTO">
+        select *
+        from schedule_place, spot, schedule
+        where s_p_spot_no = spot_no
+            and s_no = s_p_s_no
+            and s_t_no = #{t_no}
+    </select>
 
 </mapper>
 

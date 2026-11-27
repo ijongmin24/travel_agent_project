@@ -43,3 +43,18 @@ function addSpot(){
         console.error("error:", err);
     })
 }
+
+function getSpots(){
+    $.ajax({
+        url: '/spot/list',
+        data: {
+            t_no: 1
+        }
+    }).done((res) => {
+        console.log(res);
+
+    }).fail((err) => {
+        console.error("error:", err);
+    })
+}
+getSpots();
