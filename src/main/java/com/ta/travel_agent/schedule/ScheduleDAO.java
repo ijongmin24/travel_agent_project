@@ -49,29 +49,6 @@ public class ScheduleDAO {
 
     }
 
-    public static JsonObject getSchedulePlaceDetail(HttpServletRequest req, HttpServletResponse res) {
-        SqlSession ss = null;
-
-        try {
-            ss = MyBatis.connect();
-
-            String spot_no = req.getParameter("spot_no");
-
-            SpotDTO spot = ss.selectOne("bo.getSpotDetail", spot_no);
-
-            JsonObject obj = new JsonObject();
-            JsonParser parser = new JsonParser();
-            obj.add("spot", parser.parse(spot.toJSON()));
-
-            return obj;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            ss.close();
-        }
-        return null;
-    }
-
     public static void getTravel(HttpServletRequest req) {
         SqlSession ss = null;
 

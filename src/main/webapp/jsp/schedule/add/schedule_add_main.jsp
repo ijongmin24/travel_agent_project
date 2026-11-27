@@ -45,11 +45,12 @@
         <textarea id="memo"></textarea>
 
         <div style="display: flex; align-items: center; justify-content: center; gap: 16px">
-            <button>등록</button>
+            <button onclick="addSpot()">등록</button>
             <button>취소</button>
         </div>
     </div>
 </div>
 </body>
+<script src="/js/schedule/google_map.js"></script>
 <script src="/js/schedule/schedule_add_main.js"></script>
 </html>
