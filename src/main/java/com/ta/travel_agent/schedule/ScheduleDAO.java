@@ -110,7 +110,7 @@ public class ScheduleDAO {
         }
     }
 
-    public static void getOhtersTravelList(HttpServletRequest req) {
+    public static void getOthersTravelList(HttpServletRequest req) {
         SqlSession ss = null;
 
         try {

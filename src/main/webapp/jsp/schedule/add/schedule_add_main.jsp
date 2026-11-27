@@ -6,6 +6,7 @@
     <script src="/js/config.js"></script>
     <script src="https://code.jquery.com/jquery-3.8.0.js"
             integrity="sha256-/kBJEgNvXFuC0vfFREdzfv7vyPT1es3X+YuHXzwOmtA=" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -26,6 +27,14 @@
         </div>
 
         <div id="map-container" style="height: 400px; width: 400px;"></div>
+        <div id="text-input-card">
+            <input
+                    type="text"
+                    id="text-input"
+                    placeholder="Search for a place" />
+            <input type="button" id="text-input-button" value="Search" />
+        </div>
+        <div id="map"></div>
 
         <label for="startDate">날짜</label>
         <input type="date" id="startDate">
