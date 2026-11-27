@@ -7,18 +7,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/board/delete")
-public class BoardDeleteC extends HttpServlet {
+@WebServlet("/board/update")
+public class BoardUpdateC extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        BoardDAO.delete(request);
+        BoardDAO.update(request);
 
-        request.setAttribute("content", "jsp/board/board_main.jsp");
-
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/board");
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+        response.setContentType("text/plain; charset=UTF-8");
+
+        int result = BoardDAO.updateComment(request);
+
+        if (result > 0) {
+            response.getWriter().write("success");
+        } else {
+            response.getWriter().write("fail");
+        }
     }
 }

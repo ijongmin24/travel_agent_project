@@ -411,14 +411,9 @@ values (comments_seq.nextval,
         sysdate, 'N', 21, null,
         'bo');
 
-select *
-from COMMENTS;
+select * from COMMENTS;
 
-select *
-from COMMENTS;
-
-SELECT * from
-             board;
+SELECT * from board;
 
 SELECT
     c_no,
@@ -432,3 +427,7 @@ ORDER BY c_no;
 
 select * from image;
 
+
+update comments
+set c_status = 'Y'
+where c_status = 'N';

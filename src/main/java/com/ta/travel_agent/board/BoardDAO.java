@@ -2,7 +2,6 @@ package com.ta.travel_agent.board;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.*;
 import com.ta.travel_agent.MyBatis;
 import org.apache.ibatis.session.SqlSession;
@@ -255,15 +254,15 @@ public class BoardDAO {
         }
     }
 
-    public static void delete(HttpServletRequest request) {
+    public static void update(HttpServletRequest request) {
         SqlSession ss = null;
 
         try {
             ss = MyBatis.connect();
 
-            int b_no = Integer.valueOf(request.getParameter("b_no"));
+            int b_no = Integer.parseInt(request.getParameter("b_no"));
 
-            ss.delete("jmqqq.deleteBoard", b_no);
+            ss.update("jmqqq.updateBoard", b_no);
 
             ss.commit();
 
@@ -274,6 +273,40 @@ public class BoardDAO {
                 ss.close();
             }
         }
+    }
+
+    public static int updateComment(HttpServletRequest request) {
+        SqlSession ss = null;
+
+        try {
+            ss = MyBatis.connect();
+
+            int c_no = Integer.parseInt(request.getParameter("c_no"));
+
+            int result = ss.update("jmqqq.updateComment", c_no);
+
+            ss.commit();
+
+            int b_no =  Integer.parseInt(request.getParameter("b_no"));
+            List<CommentsDTO> comments = ss.selectList("jmqqq.selectComment", b_no);
+            ArrayList<String> comments_json = new ArrayList<>();
+            for(CommentsDTO comment : comments){
+                comments_json.add(comment.toJson());
+            }
+            JsonObject obj = new JsonObject();
+            JsonParser jsonParser = new JsonParser();
+            obj.add("comments", jsonParser.parse(comments_json.toString()) );
+
+            return result;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ss != null) {
+                ss.close();
+            }
+        }
+        return 0;
     }
 }
 

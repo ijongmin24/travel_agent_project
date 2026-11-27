@@ -13,7 +13,14 @@
 <div class="container">
     <c:forEach items="${boards}" var="b">
     <div class="wrap">
-        <div>${b.b_title}</div>
+        <div>${b.b_title}
+            <button type="button"
+                    onclick="if(confirm('정말 삭제하시겠습니까?')) {
+                            location.href='${pageContext.request.contextPath}/board/update?b_no=${b.b_no}';
+                            }">
+                삭제
+            </button>
+        </div>
         <div>${b.cg_name}</div>
         <div>${b.r_name}</div>
         <div class="board_content">${b.b_content}</div>
@@ -21,8 +28,8 @@
         <%-- 이미지 출력 --%>
         <div class="board_images">
             <c:forEach items="${images}" var="img">
-            <img src="${pageContext.request.contextPath}${img.i_url}" alt="게시글이미지">
-        </c:forEach>
+                <img src="${pageContext.request.contextPath}${img.i_url}" alt="게시글이미지">
+            </c:forEach>
         </div>
     </div>
 
@@ -38,12 +45,20 @@
     </div>
 
     <div class="comment">
-        <div id="commentList">
+        <div id="commentList"
+             data-delete-url="${pageContext.request.contextPath}/board/comment/delete">
             <c:forEach items="${comments}" var="com">
 
                 <div class="comment_item">
                     <div class="comment_writer"> ${com.c_u_id} </div>
-                    <div class="comment_content"> ${com.c_content}</div>
+                    <div class="comment_content"> ${com.c_content}
+                        <button type="button"
+                                class="deleteCommentBtn"
+                                data-no="${com.c_no}"
+                                data-b_no="${boards[0].b_no}">
+                            삭제
+                        </button>
+                    </div>
                     <div class="comment_info">
                         <span><fmt:formatDate value="${com.c_created_date}" pattern="yyyy-MM-dd"/></span>
                         <button type="button"
